@@ -1,0 +1,36 @@
+:root {
+  --primary: #c44536;
+  --secondary: #3d405b;
+  --light: #f4f1de;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+}
+
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.5), url('/public/images/hero-bg.webp');
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+
+.cta {
+  background: var(--primary);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  text-decoration: none;
+  margin-top: 2rem;
+  display: inline-block;
+}
