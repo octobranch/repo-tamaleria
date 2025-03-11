@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="es-MX">
 <head>
-    <meta charset="UTF-8">
-    <title>Panel Admin</title>
-    <link rel="stylesheet" href="/admin/admin.css">
+  <meta charset="UTF-8">
+  <title>Panel Admin</title>
+  <link rel="stylesheet" href="/admin/admin.css">
 </head>
 <body>
-    <div id="auth-container"></div>
-    <div id="dashboard" class="hidden">
-        <!-- Contenido dinámico -->
-    </div>
-    <script type="module" src="/admin/admin.js"></script>
+  <div id="login">
+    <h2>Acceso Administrativo</h2>
+    <form id="adminLogin">
+      <input type="email" id="email" placeholder="Correo" required>
+      <input type="password" id="password" placeholder="Contraseña" required>
+      <button type="submit">Ingresar</button>
+    </form>
+  </div>
+
+  <div id="dashboard" class="hidden">
+    <!-- Contenido del panel -->
+  </div>
+
+  <script type="module" src="/admin/admin.js"></script>
 </body>
 </html>
