@@ -117,5 +117,29 @@
             const texto = `Hola, soy ${nombre} (${email}).\n\n${mensaje}`;
             window.open(`https://wa.me/+529981901967?text=${encodeURIComponent(texto)}`);
         }
+
+        // Inicializar ScrollReveal
+        ScrollReveal({
+            reset: false, // Cambia a true si quieres que las animaciones se repitan cada vez
+            distance: '60px',
+            duration: 1000,
+            delay: 200,
+            easing: 'cubic-bezier(0.68, -0.55, 0.27, 1.55)' // Custom easing function
+        });
+
+        // Elementos a revelar
+        ScrollReveal().reveal('header', { delay: 300, origin: 'bottom' }); // Slide in header
+
+        ScrollReveal().reveal('#nosotros h2, #nosotros .nosotros-text', { origin: 'left' });
+        ScrollReveal().reveal('#nosotros .nosotros-image', { origin: 'right', delay: 500 });
+
+        ScrollReveal().reveal('#menu h2', { origin: 'top' });
+        ScrollReveal().reveal('.menu-category', { origin: 'bottom', interval: 200 });
+
+        ScrollReveal().reveal('#contacto h2', { origin: 'top' });
+        ScrollReveal().reveal('#contacto .contacto-content', { origin: 'bottom' });
+
+        ScrollReveal().reveal('footer', { origin: 'bottom' });
+
     });
 })();
