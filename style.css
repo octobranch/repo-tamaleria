@@ -16,6 +16,7 @@ body {
     transition: var(--transicion-rapida);
     -webkit-font-smoothing: antialiased; /* Mejora la calidad de la fuente en navegadores WebKit */
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden; /* Evita la barra de desplazamiento horizontal */
 }
 
 .container {
@@ -31,10 +32,13 @@ header {
     padding: 20px 0;
     transition: var(--transicion-rapida);
     box-shadow: 0 2px 5px var(--sombra); /* Sombra para resaltar el header */
+    position: sticky; /* Fija el header en la parte superior */
+    top: 0; /* Asegura que esté en la parte superior */
+    z-index: 100; /* Asegura que esté por encima del resto del contenido */
 }
 
 .logo-carousel {
-    height: 210px;
+    height: 150px; /* Reduje la altura */
     position: relative;
     margin: 20px 0;
 }
@@ -43,7 +47,7 @@ header {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    width: 200px;
+    width: 150px; /* Reduje el ancho */
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
 }
@@ -130,6 +134,11 @@ nav a:hover {
 #nosotros .nosotros-image img {
     border-radius: 15px; /* Bordes redondeados para la imagen */
     box-shadow: 0 4px 8px var(--sombra); /* Sombra para resaltar la imagen */
+    transition: transform 0.5s ease-in-out; /* Transición para el efecto hover */
+}
+
+#nosotros .nosotros-image img:hover {
+    transform: scale(1.05); /* Efecto de escala al hacer hover */
 }
 
 /* Menú */
@@ -302,10 +311,15 @@ nav a:hover {
 
 .mapa iframe {
     width: 100%;
-    height: 450px; /* Aumenta la altura del mapa */
+    height: 350px; /* Reduje la altura */
     border: none;
     border-radius: 15px; /* Bordes más redondeados */
     box-shadow: 0 4px 8px var(--sombra); /* Sombra para resaltar el mapa */
+    transition: transform 0.5s ease-in-out; /* Transición para el efecto hover */
+}
+
+.mapa iframe:hover {
+    transform: scale(1.02); /* Efecto de escala al hacer hover */
 }
 
 /* Footer */
@@ -359,6 +373,11 @@ footer {
 .copyright {
     font-size: 0.9em; /* Aumenta el tamaño de la fuente */
     color: rgba(255,255,255,0.7); /* Reduce la opacidad */
+}
+
+/* Clases para ScrollReveal */
+.reveal {
+    visibility: hidden;
 }
 
 /* Responsive */
