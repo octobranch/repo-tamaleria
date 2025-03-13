@@ -1,3 +1,17 @@
-User-agent: *  
-Allow: /  
+User-agent: *
+Disallow: /admin/
+Disallow: /tmp/
+Disallow: /cgi-bin/
+
+# No indexar archivos de imagen innecesarios
+Disallow: /img/icons/
+Disallow: /img/tmp/
+
+# No indexar archivos de estilo o javascript minificados (opcional, depende de tu caso)
+# Disallow: /*.min.css$
+# Disallow: /*.min.js$
+
+# Permitir el rastreo de las carpetas de imágenes importantes
+Allow: /img/
+
 Sitemap: https://latamaleriacancun.com/sitemap.xml
