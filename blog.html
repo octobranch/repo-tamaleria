@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>Blog de La Tamalería Cancún | Recetas, Tradiciones y Más</title>
+    <meta name="description" content="Descubre las historias detrás de nuestros tamales, recetas ancestrales, tradiciones mexicanas y noticias de La Tamalería Cancún.">
+    <meta name="keywords" content="blog tamales cancún, recetas mexicanas, tradiciones culinarias, noticias tamalería">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Blog de La Tamalería Cancún | Recetas, Tradiciones y Más">
+    <meta property="og:description" content="Sumérgete en el mundo de los tamales con nuestro blog: recetas, historias, tradiciones y noticias de La Tamalería Cancún.">
+    <meta property="og:image" content="URL_DE_UNA_IMAGEN_REPRESENTATIVA_DEL_BLOG">
+    <meta property="og:url" content="URL_DE_LA_PAGINA_DEL_BLOG">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Fuentes -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="blog-style.css"> <!-- Estilos específicos para el blog -->
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo-carousel">
+            <img src="img/logos/logo-ver1.svg" alt="La Tamalería Cancún - Tradición desde 2000" class="logo-active">
+            <img src="img/logos/logo-ver2.svg" alt="Tamales CDMX en Cancún" class="logo-hidden">
+        </div>
+
+        <nav aria-label="Menú principal">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="#articulos">Artículos</a></li>
+                <li><a href="#categorias">Categorías</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="blog-main">
+        <div class="container">
+            <div class="blog-content">
+                <!-- Sección Principal de Artículos -->
+                <section class="blog-articles">
+                    <!-- Banner Principal -->
+                    <section class="blog-banner">
+                        <h1>Nuestro Blog</h1>
+                        <p>Descubre las historias, recetas y tradiciones que hacen únicos a nuestros tamales.</p>
+                    </section>
+
+                    <!-- Artículo 1 -->
+                    <article class="articulo">
+                        <img src="img/blog/tamal-prehispanico.webp" alt="Tamal prehispánico">
+                        <h3>El Tamal Prehispánico: Un Viaje a Nuestras Raíces</h3>
+                        <p>Explora los orígenes ancestrales del tamal, desde sus ingredientes básicos hasta su significado cultural.</p>
+                        <a href="#" class="leer-mas">Leer más <i class="fas fa-arrow-right"></i></a>
+                    </article>
+
+                    <!-- Artículo 2 -->
+                    <article class="articulo">
+                        <img src="img/blog/receta-atole.webp" alt="Receta de atole">
+                        <h3>Atole Artesanal: La Receta Secreta de Doña Dolores</h3>
+                        <p>Aprende a preparar el atole tradicional con la receta transmitida de generación en generación.</p>
+                        <a href="#" class="leer-mas">Leer más <i class="fas fa-arrow-right"></i></a>
+                    </article>
+
+                    <!-- Artículo 3 -->
+                    <article class="articulo">
+                        <img src="img/blog/tamales-cdmx-cancun.webp" alt="Tamales CDMX en Cancún">
+                        <h3>De CDMX a Cancún: La Historia de La Tamalería</h3>
+                        <p>Conoce cómo trajimos el auténtico sabor de los tamales de la Ciudad de México a las playas de Cancún.</p>
+                        <a href="#" class="leer-mas">Leer más <i class="fas fa-arrow-right"></i></a>
+                    </article>
+
+                    <!-- Paginación (Ejemplo) -->
+                    <div class="paginacion">
+                        <a href="#" class="pagina-anterior"><i class="fas fa-arrow-left"></i> Anterior</a>
+                        <a href="#" class="pagina-siguiente">Siguiente <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </section>
+
+                <!-- Barra Lateral -->
+                <aside class="blog-sidebar">
+                    <!-- Búsqueda -->
+                    <div class="sidebar-widget">
+                        <h3>Búsqueda</h3>
+                        <div class="busqueda">
+                            <input type="text" placeholder="Buscar...">
+                            <button><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Categorías -->
+                    <div class="sidebar-widget">
+                        <h3>Categorías</h3>
+                        <ul class="categorias-lista">
+                            <li><a href="#">Recetas</a></li>
+                            <li><a href="#">Tradiciones</a></li>
+                            <li><a href="#">Historia</a></li>
+                            <li><a href="#">Noticias</a></li>
+                            <li><a href="#">Eventos</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Archivos -->
+                    <div class="sidebar-widget">
+                        <h3>Archivos</h3>
+                        <ul class="archivos-lista">
+                            <li><a href="#">Diciembre 2023</a></li>
+                            <li><a href="#">Noviembre 2023</a></li>
+                            <li><a href="#">Octubre 2023</a></li>
+                            <li><a href="#">Septiembre 2023</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Publicaciones Recientes -->
+                    <div class="sidebar-widget">
+                        <h3>Publicaciones Recientes</h3>
+                        <ul class="publicaciones-recientes">
+                            <li>
+                                <a href="#">El Secreto del Maíz Nixtamalizado</a>
+                                <time datetime="2023-12-15">15 de Diciembre, 2023</time>
+                            </li>
+                            <li>
+                                <a href="#">Tamales Veganos: Una Opción Deliciosa</a>
+                                <time datetime="2023-12-10">10 de Diciembre, 2023</time>
+                            </li>
+                            <li>
+                                <a href="#">La Historia del Atole en México</a>
+                                <time datetime="2023-12-05">5 de Diciembre, 2023</time>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2023 La Tamalería Cancún - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="blog-script.js"></script> <!-- Script específico para el blog -->
+</body>
+</html>
