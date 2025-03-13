@@ -33,18 +33,20 @@ El sitio web permite a los usuarios:
 ## Estructura de Archivos
 
 la-tamaleria-cancun/
-├── index.html # Archivo HTML principal
-├── style.css # Archivo CSS con los estilos
-├── script.js # Archivo JavaScript con la lógica
-├── img/ # Carpeta que contiene las imágenes
-│ ├── logos/ # Carpeta con los logos
-│ │ ├── logo-ver1.svg
-│ │ ├── logo-ver2.svg
-│ ├── tamaleria-interior.webp # Imagen del interior de la tamalería
-│ └── ... # Otras imágenes
-├── sitemap.xml # Archivo Sitemap para SEO
-├── robots.txt # Archivo Robots.txt para controlar el rastreo
-└── README.md # Este archivo
+├── index.html
+├── blog.html
+├── style.css
+├── blog-style.css
+├── script.js
+├── blog-script.js
+└── img/
+    ├── logos/
+    │   ├── logo-ver1.svg
+    │   └── logo-ver2.svg
+    └── blog/
+        ├── tamal-prehispanico.webp
+        ├── receta-atole.webp
+        └── tamales-cdmx-cancun.webp
 
 
 ## Configuración e Instalación
