@@ -1,5 +1,27 @@
 (function() {
     document.addEventListener("DOMContentLoaded", () => {
+        // Menú Hamburguesa
+        const menuToggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
+
+        menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('activo');
+        });
+
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('#menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('activo');
+            });
+        });
+
+        // Cerrar menú al hacer clic fuera de él
+        document.addEventListener('click', (e) => {
+            if (!menu.contains(e.target) && !menuToggle.contains(e.target)) {
+                menu.classList.remove('activo');
+            }
+        });
+
         // Rotación de Logos
         const logos = document.querySelectorAll('.logo-carousel img');
         let currentLogo = 0;
@@ -30,13 +52,7 @@
 
         document.querySelectorAll('.producto-item').forEach(item => {
             const nombre = item.querySelector('p').textContent.trim();
-            const contador = item.querySelector('.contador');
-
-            pedido[nombre] = {
-                cantidad: 0,
-                precio: precios[nombre], // Usamos el precio directamente del nombre del producto
-                elemento: item
-            };
+            pedido[nombre] = { cantidad: 0, precio: precios[nombre], elemento: item };
 
             item.querySelector('.sumar').addEventListener('click', () => {
                 pedido[nombre].cantidad++;
@@ -54,11 +70,10 @@
         function actualizarInterfaz() {
             total = 0;
 
-            // Primero, actualizamos los contadores y el estilo de los productos
             document.querySelectorAll('.producto-item').forEach(item => {
                 const nombre = item.querySelector('p').textContent.trim();
                 const contador = item.querySelector('.contador');
-                contador.textContent = pedido[nombre].cantidad; // Actualizar el contador en la interfaz
+                contador.textContent = pedido[nombre].cantidad;
 
                 if (pedido[nombre].cantidad > 0) {
                     item.style.backgroundColor = 'var(--negro)';
@@ -69,13 +84,10 @@
                 }
             });
 
-            // Luego, recalculamos el total
             Object.keys(pedido).forEach(nombre => {
-                const item = pedido[nombre];
-                total += item.cantidad * item.precio;
+                total += pedido[nombre].cantidad * pedido[nombre].precio;
             });
 
-            // Actualizar el total en la interfaz
             document.getElementById('total').textContent = total;
         }
 
@@ -125,42 +137,32 @@
         anchorLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-
                 const targetId = this.getAttribute('href').substring(1);
                 const targetElement = document.getElementById(targetId);
 
                 if (targetElement) {
                     const targetOffsetTop = targetElement.offsetTop - headerHeight;
-
-                    window.scrollTo({
-                        top: targetOffsetTop,
-                        behavior: 'smooth' // Opcional: para un desplazamiento suave
-                    });
+                    window.scrollTo({ top: targetOffsetTop, behavior: 'smooth' });
                 }
             });
         });
 
         // Inicializar ScrollReveal
         ScrollReveal({
-            reset: false, // Cambia a true si quieres que las animaciones se repitan cada vez
+            reset: false,
             distance: '60px',
             duration: 1000,
             delay: 200,
-            easing: 'cubic-bezier(0.68, -0.55, 0.27, 1.55)' // Custom easing function
+            easing: 'cubic-bezier(0.68, -0.55, 0.27, 1.55)'
         });
 
-        // Elementos a revelar
-        ScrollReveal().reveal('header', { delay: 300, origin: 'bottom' }); // Slide in header
-
+        ScrollReveal().reveal('header', { delay: 300, origin: 'bottom' });
         ScrollReveal().reveal('#nosotros h2, #nosotros .nosotros-text', { origin: 'left' });
         ScrollReveal().reveal('#nosotros .nosotros-image', { origin: 'right', delay: 500 });
-
         ScrollReveal().reveal('#menu h2', { origin: 'top' });
         ScrollReveal().reveal('.menu-category', { origin: 'bottom', interval: 200 });
-
         ScrollReveal().reveal('#contacto h2', { origin: 'top' });
         ScrollReveal().reveal('#contacto .contacto-content', { origin: 'bottom' });
-
         ScrollReveal().reveal('footer', { origin: 'bottom' });
 
     });
