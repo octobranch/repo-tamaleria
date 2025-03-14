@@ -12,7 +12,7 @@
     <!-- Open Graph -->
     <meta property="og:title" content="Tamales 100% Auténticos CDMX en Cancún | La Tamalería">
     <meta property="og:description" content="El verdadero sabor de la Ciudad de México ahora en Cancún. Tamales envueltos a mano con ingredientes locales.">
-    <meta property="og:image" content="https://latamaleriacancun.com/img/blog/tamal-prehispanico.webp" alt="Tamal prehispánico">
+    <meta property="og:image" content="img/blog/tamal-prehispanico.webp">
     <meta property="og:url" content="https://latamaleriacancun.com">
 
     <!-- Font Awesome -->
@@ -26,28 +26,26 @@
 </head>
 <body>
     <!-- Header -->
-   <header>
-    <!-- Botón de menú hamburguesa -->
-<button id="menu-toggle">☰</button>
+    <header>
+        <div class="logo-carousel">
+            <img src="img/logos/logo-ver1.svg" alt="La Tamalería Cancún - Tradición desde 2000" class="logo-active">
+            <img src="img/logos/logo-ver2.svg" alt="Tamales CDMX en Cancún" class="logo-hidden">
+        </div>
 
-<!-- Menú de navegación -->
-<nav id="menu">
-    <ul>
-        <li><a href="#nosotros">Nosotros</a></li>
-        <li><a href="#menu">Menú</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-    </ul>
-</nav>
-    <div class="navbar">
-        <a href="#" class="logo">La Tamalería</a>
-        <ul id="nav-links">
-            <li><a href="#nosotros">Nosotros</a></li>
-            <li><a href="#menu">Menú</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
-        <span class="menu-toggle" id="menu-toggle">&#9776;</span>
-    </div>
-</header>
+        <nav aria-label="Menú principal">
+            <div class="menu-toggle" id="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul id="menu">
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#menu">Menú</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main>
         <!-- Sección Nosotros -->
