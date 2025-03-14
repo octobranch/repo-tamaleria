@@ -118,6 +118,28 @@
             window.open(`https://wa.me/+529981901967?text=${encodeURIComponent(texto)}`);
         }
 
+        // Ajuste de desplazamiento para el header fijo
+        const headerHeight = document.querySelector('header').offsetHeight;
+        const anchorLinks = document.querySelectorAll('a[href^="#"]');
+
+        anchorLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    const targetOffsetTop = targetElement.offsetTop - headerHeight;
+
+                    window.scrollTo({
+                        top: targetOffsetTop,
+                        behavior: 'smooth' // Opcional: para un desplazamiento suave
+                    });
+                }
+            });
+        });
+
         // Inicializar ScrollReveal
         ScrollReveal({
             reset: false, // Cambia a true si quieres que las animaciones se repitan cada vez
