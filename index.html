@@ -33,12 +33,13 @@
         </div>
 
         <nav aria-label="Menú principal">
-            <div class="menu-toggle" id="menu-toggle">
+            <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="menu-items">
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
-            </div>
-            <ul>
+                <span class="sr-only">Menú</span>
+            </button>
+            <ul id="menu-items">
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#menu">Menú</a></li>
                 <li><a href="blog.html">Blog</a></li>
@@ -54,7 +55,7 @@
                 <h2>Nuestra Tradición</h2>
                 <div class="nosotros-content">
                     <div class="nosotros-text">
-                        <p>En el corazón de Cancún, hay un secreto que viajó desde los mercados de Ciudad de México hasta tu mesa. Todo comenzó con Doña Dolores,una abuela mexicana cuyas manos transformaban el maíz en tamales suaves y el cacao en atole espumoso. Su cocina era un altar: humeante, llena de hojas de maíz y plátano, chiles anchos y el aroma a canela recién molida.</p>
+                        <p>En el corazón de Cancún, hay un secreto que viajó desde los mercados de Ciudad de México hasta tu mesa. Todo comenzó con Doña Dolores, una abuela mexicana cuyas manos transformaban el maíz en tamales suaves y el cacao en atole espumoso. Su cocina era un altar: humeante, llena de hojas de maíz y plátano, chiles anchos y el aroma a canela recién molida.</p>
 
                         <p>Un día, su nieta descubrió un cofre bajo una vieja mesa de madera: las recetas escritas a mano de Doña Dolores, con cada detalle milimétrico, desde el maíz nixtamalizado hasta el relleno de cerdo adobado. Ese tesoro, guardado por décadas, se convirtió en la esencia de La Tamaleria Cancun , un homenaje a la tradición que hoy enamora a Quintana Roo.</p>
 
@@ -88,34 +89,34 @@
                         <div class="producto-item">
                             <p>Salsa Verde con Pollo</p>
                             <div class="cantidad-control">
-                                <button class="btn-cantidad restar">-</button>
+                                <button class="btn-cantidad restar" data-producto="Salsa Verde con Pollo">-</button>
                                 <span class="contador">0</span>
-                                <button class="btn-cantidad sumar">+</button>
+                                <button class="btn-cantidad sumar" data-producto="Salsa Verde con Pollo">+</button>
                             </div>
                         </div>
                         <!-- Repetir para otros tamales -->
                         <div class="producto-item">
                             <p>Mole con Pollo</p>
                             <div class="cantidad-control">
-                                <button class="btn-cantidad restar">-</button>
+                                <button class="btn-cantidad restar" data-producto="Mole con Pollo">-</button>
                                 <span class="contador">0</span>
-                                <button class="btn-cantidad sumar">+</button>
+                                <button class="btn-cantidad sumar" data-producto="Mole con Pollo">+</button>
                             </div>
                         </div>
                         <div class="producto-item">
                             <p>Rajas con Queso</p>
                             <div class="cantidad-control">
-                                <button class="btn-cantidad restar">-</button>
+                                <button class="btn-cantidad restar" data-producto="Rajas con Queso">-</button>
                                 <span class="contador">0</span>
-                                <button class="btn-cantidad sumar">+</button>
+                                <button class="btn-cantidad sumar" data-producto="Rajas con Queso">+</button>
                             </div>
                         </div>
                         <div class="producto-item">
                             <p>Tamal Ranchero</p>
                             <div class="cantidad-control">
-                                <button class="btn-cantidad restar">-</button>
+                                <button class="btn-cantidad restar" data-producto="Tamal Ranchero">-</button>
                                 <span class="contador">0</span>
-                                <button class="btn-cantidad sumar">+</button>
+                                <button class="btn-cantidad sumar" data-producto="Tamal Ranchero">+</button>
                             </div>
                         </div>
                         </div>
@@ -127,9 +128,9 @@
                         <div class="producto-item">
                             <p>Guajolota (Tamal + $5)</p>
                             <div class="cantidad-control">
-                                <button class="btn-cantidad restar">-</button>
+                                <button class="btn-cantidad restar" data-producto="Guajolota (Tamal + $5)">-</button>
                                 <span class="contador">0</span>
-                                <button class="btn-cantidad sumar">+</button>
+                                <button class="btn-cantidad sumar" data-producto="Guajolota (Tamal + $5)">+</button>
                             </div>
                         </div>
                     </div>
@@ -141,25 +142,25 @@
                         <div class="producto-item">
                             <p>Chocolate Artesanal</p>
                             <div class="cantidad-control">
-                                <button class="btn-cantidad restar">-</button>
+                                <button class="btn-cantidad restar" data-producto="Chocolate Artesanal">-</button>
                                 <span class="contador">0</span>
-                                <button class="btn-cantidad sumar">+</button>
+                                <button class="btn-cantidad sumar" data-producto="Chocolate Artesanal">+</button>
                             </div>
                         </div>
                         <div class="producto-item">
                             <p>Arroz con Leche</p>
                             <div class="cantidad-control">
-                                <button class="btn-cantidad restar">-</button>
+                                <button class="btn-cantidad restar" data-producto="Arroz con Leche">-</button>
                                 <span class="contador">0</span>
-                                <button class="btn-cantidad sumar">+</button>
+                                <button class="btn-cantidad sumar" data-producto="Arroz con Leche">+</button>
                             </div>
                         </div>
                         <div class="producto-item">
                             <p>Atole de Fresa</p>
                             <div class="cantidad-control">
-                                <button class="btn-cantidad restar">-</button>
+                                <button class="btn-cantidad restar" data-producto="Atole de Fresa">-</button>
                                 <span class="contador">0</span>
-                                <button class="btn-cantidad sumar">+</button>
+                                <button class="btn-cantidad sumar" data-producto="Atole de Fresa">+</button>
                             </div>
                         </div>
                     </div>
