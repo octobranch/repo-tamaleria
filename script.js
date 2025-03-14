@@ -55,6 +55,23 @@ document.addEventListener('DOMContentLoaded', function() {
             precio: precios[nombre],
             elemento: item
         };
+
+        // Obtener los botones de sumar y restar dentro del producto-item
+        const btnSumar = item.querySelector('.sumar');
+        const btnRestar = item.querySelector('.restar');
+
+        // Agregar event listeners a los botones de sumar y restar
+        btnSumar.addEventListener('click', () => {
+            pedido[nombre].cantidad++;
+            actualizarInterfaz();
+        });
+
+        btnRestar.addEventListener('click', () => {
+            if (pedido[nombre].cantidad > 0) {
+                pedido[nombre].cantidad--;
+                actualizarInterfaz();
+            }
+        });
     });
 
     // Función para actualizar la interfaz de usuario
@@ -79,20 +96,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('total').textContent = total;
     }
 
-    // Eventos para los botones de sumar y restar
-    document.querySelectorAll('.btn-cantidad').forEach(boton => {
-        boton.addEventListener('click', () => {
-            const nombreProducto = boton.dataset.producto;
-            if (boton.classList.contains('sumar')) {
-                pedido[nombreProducto].cantidad++;
-            } else if (boton.classList.contains('restar') && pedido[nombreProducto].cantidad > 0) {
-                pedido[nombreProducto].cantidad--;
-            }
-            actualizarInterfaz();
-        });
-    });
-
-
     // Botón de Ordenar
     const ordenarBtn = document.getElementById('ordenar-btn');
 
@@ -102,3 +105,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
         for (const nombre in pedido) {
             if (pedido[nombre].cantidad > 0) {
+                mensaje += `- ${nombre}: ${pedido[nombre].cantidad}\n`;
+                itemsPedido = true; // Se encontraron items en el pedido
+            }
+        }
+
+        if (!itemsPedido) {
+            alert('Por favor, selecciona al menos un producto.');
+            return; // No enviar el mensaje si no hay items
+        }
+
+        mensaje += `\nTotal: $${total}`;
+        const telefono = '529981901967'; // Reemplaza con el número de teléfono real
+        const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+        window.open(url, '_blank');
+    });
+
+    // Formulario de Contacto
+    const enviarContactoBtn = document.getElementById('enviar-contacto');
+
+    enviarContactoBtn.addEventListener('click', () => {
+        const nombre = document.getElementById('nombre').value;
+        const email = document.getElementById('email').value;
+        const mensaje = document.getElementById('mensaje').value;
+
+        let mensajeWhatsApp = `¡Hola! Soy ${nombre} (${email}) y quiero contactarlos con el siguiente mensaje:\n\n${mensaje}`;
+        const telefono = '529981901967'; // Reemplaza con el número de teléfono real
+        const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensajeWhatsApp)}`;
+        window.open(url, '_blank');
+    });
+
+    // Inicializar ScrollReveal
+    ScrollReveal({
+        reset: false,
+        distance: '60px',
+        duration: 1000,
+        delay: 200
+    });
+
+    ScrollReveal().reveal('.section h2, #nosotros .nosotros-content, #menu .menu-category, .contacto-content', { delay: 200, origin: 'top' });
+    ScrollReveal().reveal('.footer-content', { delay: 200, origin: 'bottom' });
+});
