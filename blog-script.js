@@ -62,4 +62,26 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(style);
 
     // Efecto hover en las categorías (se mueve al CSS)
+
+    // Ajuste de desplazamiento para el header fijo
+    const headerHeight = document.querySelector('header').offsetHeight;
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+
+    anchorLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                const targetOffsetTop = targetElement.offsetTop - headerHeight;
+
+                window.scrollTo({
+                    top: targetOffsetTop,
+                    behavior: 'smooth' // Opcional: para un desplazamiento suave
+                });
+            }
+        });
+    });
 });
