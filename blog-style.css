@@ -341,15 +341,18 @@ footer {
         margin: 10px 0; /* Reduce el margen */
     }
 
+    /* Asegúrate de que la navegación no esté oculta inicialmente */
     nav {
-        width: 100%; /* Ocupa todo el ancho */
+        width: 100%;
         display: none; /* Oculta la navegación por defecto */
     }
 
+    /* Muestra la navegación cuando está activa */
     nav.active {
-        display: block; /* Muestra la navegación cuando está activa */
+        display: block;
     }
 
+    /* Estilos para los items del menú */
     #menu-items {
         flex-direction: column; /* Apila los elementos del menú */
         align-items: flex-start; /* Alinea a la izquierda */
@@ -357,16 +360,18 @@ footer {
         display: none; /* Oculta por defecto */
     }
 
+    /* Muestra los items del menú cuando la clase 'show' está presente */
     #menu-items.show {
-        display: block; /* Muestra cuando se activa */
+        display: block;
     }
 
     #menu-items li {
         margin-bottom: 10px; /* Espacio entre elementos del menú */
     }
 
+    /* Estilos para el botón del menú hamburguesa */
     .menu-toggle {
-        display: block; /* Muestra el botón del menú hamburguesa */
+        display: flex; /* Muestra el botón del menú hamburguesa */
         cursor: pointer;
         padding: 10px;
         background-color: var(--amarillo);
