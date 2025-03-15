@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Funcionalidad de búsqueda
     const searchInput = document.querySelector('.busqueda input[type="text"]');
-    const articulos = document.querySelectorAll('.articulo');
-
+    const articulos = Array.from(document.querySelectorAll('.articulo')); // Convertir a Array
+    
     searchInput.addEventListener('input', (e) => {
         const searchTerm = e.target.value.toLowerCase();
 
@@ -40,8 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Mostrar más artículos (inicialmente ocultos)
-    const articulosOcultos = Array.from(document.querySelectorAll('.articulo')).slice(3); // Ocultar artículos después del tercero
-    articulosOcultos.forEach(articulo => articulo.style.display = 'none');
+    const articulosOcultos = articulos.slice(3); // Ocultar artículos después del tercero
+    articulosOcultos.forEach(articulo => articulo.classList.add('hidden'));
 
     const btnMostrarMas = document.createElement('button');
     btnMostrarMas.textContent = 'Mostrar más artículos';
@@ -51,11 +51,52 @@ document.addEventListener('DOMContentLoaded', () => {
     blogArticles.appendChild(btnMostrarMas);
 
     btnMostrarMas.addEventListener('click', () => {
-        articulosOcultos.forEach(articulo => articulo.style.display = 'block');
+        articulosOcultos.forEach(articulo => articulo.classList.remove('hidden'));
         btnMostrarMas.style.display = 'none'; // Ocultar el botón después de mostrar todos los artículos
     });
 
-    //Estilos para "Mostrar más"
+    // Paginación con JavaScript
+    const articulosPorPagina = 3;
+    let paginaActual = 1;
+    const numPaginas = Math.ceil(articulos.length / articulosPorPagina);
+
+    const btnAnterior = document.querySelector('.pagina-anterior');
+    const btnSiguiente = document.querySelector('.pagina-siguiente');
+
+    function mostrarPagina(pagina) {
+        articulos.forEach((articulo, index) => {
+            if (index >= (pagina - 1) * articulosPorPagina && index < pagina * articulosPorPagina) {
+                articulo.style.display = 'block';
+            } else {
+                articulo.style.display = 'none';
+            }
+        });
+    }
+
+    function actualizarBotones() {
+        btnAnterior.style.display = paginaActual === 1 ? 'none' : 'inline-block';
+        btnSiguiente.style.display = paginaActual === numPaginas ? 'none' : 'inline-block';
+    }
+
+    btnAnterior.addEventListener('click', (e) => {
+         e.preventDefault(); // Evitar la navegación
+        if (paginaActual > 1) {
+            paginaActual--;
+            mostrarPagina(paginaActual);
+            actualizarBotones();
+        }
+    });
+
+    btnSiguiente.addEventListener('click', (e) => {
+        e.preventDefault(); // Evitar la navegación
+        if (paginaActual < numPaginas) {
+            paginaActual++;
+            mostrarPagina(paginaActual);
+            actualizarBotones();
+        }
+    });
+
+    //Estilos para "Mostrar más" y clase oculta
     const style = document.createElement('style');
     style.textContent = `
     .mostrar-mas-btn {
@@ -79,8 +120,14 @@ document.addEventListener('DOMContentLoaded', () => {
         background-color: var(--amarillo);
         color: var(--negro);
     }
+     .articulo.hidden {
+            display: none;
+        }
     `;
     document.head.appendChild(style);
+
+    mostrarPagina(paginaActual);
+    actualizarBotones();
 
     // Ajuste de desplazamiento para el header fijo
     const headerHeight = document.querySelector('header').offsetHeight;
