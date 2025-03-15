@@ -94,7 +94,7 @@ Este sitio web se puede desplegar fácilmente en plataformas como Vercel o Netli
 
 ## Créditos
 
-*   Este proyecto fue desarrollado por [Tu Nombre o Nombre de Tu Empresa].
+*   Este proyecto fue desarrollado por Octo-Branch.
 *   Se utilizaron las siguientes librerías y recursos:
     *   [Font Awesome](https://fontawesome.com/)
     *   [Google Fonts (Poppins)](https://fonts.google.com/)
@@ -109,4 +109,3 @@ Este proyecto está bajo la licencia [MIT License](LICENSE).
 Si tienes alguna pregunta o sugerencia, no dudes en contactarnos a través de:
 
 *   Correo electrónico: [qkike@icloud.com]
-*   Redes sociales: [enlaces a tus redes sociales]
