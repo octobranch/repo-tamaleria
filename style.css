@@ -2,18 +2,17 @@
     --amarillo: #FFE63E;
     --negro: #000000;
     --gris: #D9D9D9;
-    --fondo: #FFF4E1;
-    --borde: rgba(0,0,0,0.1);
-    --sombra: rgba(0,0,0,0.15);
+    --fondo: #1E1E1E; /* Fondo oscuro que complementa amarillo y negro */
+    --borde: rgba(0, 0, 0, 0.1);
+    --sombra: rgba(0, 0, 0, 0.25); /* Sombra más pronunciada */
     --transicion-rapida: all 0.2s ease-in-out;
 }
 
 /* General */
 body {
-    /*font-family: 'Poppins', sans-serif;*/ /* Fuente anterior */
-    font-family: 'Nunito', sans-serif; /* Nueva fuente */
+    font-family: 'Nunito', sans-serif;
     background-color: var(--fondo);
-    color: var(--negro);
+    color: var(--amarillo); /* Texto principal en amarillo para contraste */
     line-height: 1.7;
     transition: var(--transicion-rapida);
     -webkit-font-smoothing: antialiased;
@@ -43,10 +42,10 @@ body {
 
 /* Header */
 header {
-    background-color: var(--fondo);
+    background-color: rgba(0, 0, 0, 0.8); /* Header negro semi-transparente */
     padding: 10px 20px;
     transition: var(--transicion-rapida);
-    box-shadow: 0 2px 5px var(--sombra);
+    box-shadow: 0 4px 8px var(--sombra); /* Sombra más notoria */
     position: sticky;
     top: 0;
     z-index: 100;
@@ -87,27 +86,31 @@ nav ul {
     justify-content: center;
     gap: 30px;
     padding: 15px;
-    background: var(--negro);
+    background: var(--amarillo);
     list-style: none;
     border-radius: 30px;
     box-shadow: 0 2px 5px var(--sombra);
     margin: 0;
+    animation: slideIn 1s ease-out; /* Animación de entrada */
 }
 
 nav a {
-    color: var(--amarillo);
+    color: var(--negro);
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s, transform 0.3s;
     padding: 10px 20px;
     border-radius: 25px;
     display: block;
+    position: relative; /* Necesario para el efecto glow */
+    overflow: hidden; /* Recorta el glow */
 }
 
 nav a:hover {
-    color: white;
+    color: var(--amarillo);
     transform: scale(1.1);
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px var(--amarillo); /* Efecto glow al hacer hover */
 }
 
 /* Hamburger Menu */
@@ -124,7 +127,7 @@ nav a:hover {
 .menu-toggle .bar {
     width: 30px;
     height: 3px;
-    background-color: var(--negro);
+    background-color: var(--amarillo);
     margin: 3px 0;
     transition: 0.4s;
 }
@@ -152,26 +155,29 @@ nav a:hover {
     margin-bottom: 40px;
     font-size: 2.5em;
     font-weight: 700;
-    color: var(--negro);
-    transition: var(--transicion-rapida);
+    color: var(--amarillo);
+    transition: transform 0.3s, color 0.3s;
+    animation: pulse 2s infinite alternate; /* Animación sutil de pulso */
+}
+
+.section h2:hover {
+    transform: scale(1.05);
+    color: var(--amarillo);
+    text-shadow: 0 0 10px var(--amarillo); /* Resaltado al hacer hover */
 }
 
 /* Nosotros Section */
 #nosotros .nosotros-content {
-    display: flex; /* Cambiado a flexbox */
-    flex-direction: column; /* Alinear verticalmente */
-    align-items: center; /* Centrar horizontalmente */
-    text-align: center; /* Centrar el texto */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: fadeIn 1s ease-out; /* Animación de entrada */
 }
 
 #nosotros .nosotros-text {
     font-size: 1.1em;
-    margin-bottom: 20px; /* Espacio entre el texto y la imagen */
-}
-
-#nosotros .nosotros-image {
-    order: -1; /* Mover la imagen arriba del texto */
-    margin-bottom: 20px; /* Espacio debajo de la imagen */
+    margin-bottom: 20px;
 }
 
 #nosotros .features-list {
@@ -192,16 +198,22 @@ nav a:hover {
     font-size: 1.2em;
 }
 
+#nosotros .nosotros-image {
+    order: -1;
+    margin-bottom: 20px;
+}
+
 #nosotros .nosotros-image img {
     border-radius: 15px;
     box-shadow: 0 4px 8px var(--sombra);
     transition: transform 0.5s ease-in-out;
-    max-width: 80%; /* Limitar el ancho de la imagen */
-    height: auto; /* Mantener la proporción */
+    max-width: 80%;
+    height: auto;
 }
 
 #nosotros .nosotros-image img:hover {
     transform: scale(1.05);
+    box-shadow: 0 0 10px var(--amarillo); /* Resaltado al hacer hover */
 }
 
 /* Menu */
@@ -215,8 +227,9 @@ nav a:hover {
     text-align: center;
     font-size: 2em;
     font-weight: 600;
-    color: var(--negro);
-    transition: var(--transicion-rapida);
+    color: var(--amarillo);
+    transition: transform 0.3s, color 0.3s;
+    animation: fadeIn 1s ease-out; /* Animación de entrada */
 }
 
 .productos-grid {
@@ -227,7 +240,7 @@ nav a:hover {
 }
 
 .producto-item {
-    background: white;
+    background: rgba(255, 230, 62, 0.1); /* Fondo amarillo sutil */
     padding: 20px;
     border-radius: 12px;
     display: flex;
@@ -235,10 +248,14 @@ nav a:hover {
     align-items: center;
     box-shadow: 0 4px 8px var(--sombra);
     transition: transform 0.3s, background-color 0.3s, color 0.3s;
+    color: var(--gris); /* Texto en gris para contraste */
 }
 
 .producto-item:hover {
     transform: translateY(-5px);
+    background-color: rgba(255, 230, 62, 0.3);
+    color: var(--amarillo);
+    box-shadow: 0 0 10px var(--amarillo); /* Resaltado al hacer hover */
 }
 
 .cantidad-control {
@@ -248,8 +265,8 @@ nav a:hover {
 }
 
 .btn-cantidad {
-    background: var(--negro);
-    color: var(--amarillo);
+    background: var(--amarillo);
+    color: var(--negro);
     border: none;
     width: 35px;
     height: 35px;
@@ -262,8 +279,8 @@ nav a:hover {
 }
 
 .btn-cantidad:hover {
-    background: var(--amarillo);
-    color: var(--negro);
+    background: var(--negro);
+    color: var(--amarillo);
 }
 
 .total-pedido {
@@ -279,21 +296,21 @@ nav a:hover {
 }
 
 #ordenar-btn {
-    background: var(--negro);
-    color: var(--amarillo);
+    background: var(--amarillo);
+    color: var(--negro);
     padding: 14px 40px;
     border-radius: 30px;
     font-weight: bold;
     font-size: 1.1em;
-    border: 2px solid var(--amarillo);
+    border: 2px solid var(--negro);
     transition: all 0.3s;
     box-shadow: 0 4px 6px var(--sombra);
     cursor: pointer;
 }
 
 #ordenar-btn:hover {
-    background: var(--amarillo);
-    color: var(--negro);
+    background: var(--negro);
+    color: var(--amarillo);
     transform: translateY(-2px);
     box-shadow: 0 6px 8px var(--sombra);
 }
@@ -317,7 +334,7 @@ nav a:hover {
     margin-bottom: 8px;
     font-size: 1.1em;
     font-weight: 500;
-    color: var(--negro);
+    color: var(--amarillo); /* Etiquetas en amarillo */
     transition: var(--transicion-rapida);
 }
 
@@ -331,6 +348,8 @@ nav a:hover {
     box-sizing: border-box;
     transition: border-color 0.3s;
     font-size: 1em;
+    background-color: rgba(255, 230, 62, 0.05); /* Fondo amarillo sutil */
+    color: var(--gris); /* Texto en gris para contraste */
 }
 
 .form-group input:focus,
@@ -360,14 +379,14 @@ nav a:hover {
 }
 
 #enviar-contacto {
-    background-color: var(--negro);
-    color: var(--amarillo);
-    border: 2px solid var(--amarillo);
+    background-color: var(--amarillo);
+    color: var(--negro);
+    border: 2px solid var(--negro);
 }
 
 #enviar-contacto:hover {
-    background-color: var(--amarillo);
-    color: var(--negro);
+    background-color: var(--negro);
+    color: var(--amarillo);
     transform: translateY(-2px);
     box-shadow: 0 6px 8px var(--sombra);
 }
@@ -383,6 +402,7 @@ nav a:hover {
 
 .mapa iframe:hover {
     transform: scale(1.02);
+    box-shadow: 0 0 10px var(--amarillo); /* Resaltado al hacer hover */
 }
 
 /* Footer */
@@ -404,7 +424,6 @@ footer {
 .footer-info {
     margin-bottom: 15px;
     font-size: 1.1em;
-    /* Ajuste para asegurar que el enlace de contacto funcione */
 }
 
 .footer-info a {
@@ -436,12 +455,42 @@ footer {
 
 .copyright {
     font-size: 0.9em;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 /* ScrollReveal Classes */
 .reveal {
     visibility: hidden;
+}
+
+/* Animaciones Keyframes */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
 }
 
 /* Mobile Styles */
@@ -522,7 +571,7 @@ footer {
     padding: 10px 15px;
     margin: 0 5px;
     background-color: var(--fondo);
-    color: var(--negro);
+    color: var(--amarillo);
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
@@ -535,11 +584,11 @@ footer {
 
 .paginacion a.disabled {
     color: var(--gris);
-    pointer-events: none; /* Desactiva los clics en el enlace */
+    pointer-events: none;
     text-decoration: none;
 }
 
 .paginacion a.disabled:hover {
-    background-color: transparent; /* Elimina el efecto hover */
+    background-color: transparent;
     color: var(--gris);
 }
