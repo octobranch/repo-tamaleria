@@ -1,0 +1,226 @@
+/* admin.css */
+:root {
+    --amarillo: #FFE63E;
+    --negro: #000000;
+    --gris: #D9D9D9;
+    --primary-color: var(--negro);          /* Negro como color principal (barra lateral, encabezados) */
+    --secondary-color: var(--amarillo);     /* Amarillo como color secundario (acentos, botones) */
+    --accent-color: var(--gris);           /* Gris para elementos sutiles (bordes, fondos suaves) */
+    --text-color: var(--negro);            /* Texto general en negro */
+    --text-color-light: #fff;              /* Texto blanco para elementos oscuros */
+    --border-color: var(--gris);           /* Bordes grises */
+    --shadow-color: rgba(0, 0, 0, 0.15);   /* Sombra sutil */
+    --background-color: #f5f5f5;           /* Fondo general gris claro */
+    --surface-color: #fff;                /* Superficies blancas (contenedores, modales) */
+    --danger-color: #e74c3c;              /* Rojo, mantenido para errores/alertas */
+    --success-color: #27ae60;             /* Verde, mantenido para éxito */
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Autenticación */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* Degradado sutil, Negro a Gris */
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+}
+
+.auth-box {
+    background: var(--surface-color);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px var(--shadow-color);
+    width: 100%;
+    max-width: 450px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.auth-box:hover {
+    transform: translateY(-3px);
+}
+
+/* Tabla de inventario */
+.inventory-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--surface-color);
+    box-shadow: 0 4px 12px var(--shadow-color);
+    border-radius: 12px;
+    overflow-x: auto; /* Permite el scroll horizontal si la tabla es muy ancha */
+}
+
+.inventory-table th,
+.inventory-table td {
+    padding: 0.75rem; /* Reducido para dar más espacio */
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap; /* Evita que el texto se envuelva */
+}
+
+.inventory-table th {
+    background: var(--primary-color);        /* Encabezados en negro */
+    color: var(--text-color-light);       /* Texto blanco en los encabezados */
+    cursor: pointer;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.inventory-table th:first-child {
+    border-top-left-radius: 12px;
+}
+
+.inventory-table th:last-child {
+    border-top-right-radius: 12px;
+}
+
+.inventory-table tr:last-child td {
+    border-bottom: none;
+}
+
+.inventory-table tr:last-child td:first-child {
+    border-bottom-left-radius: 12px;
+}
+
+.inventory-table tr:last-child td:last-child {
+    border-bottom-right-radius: 12px;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: var(--surface-color);
+    padding: 2.5rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+/* Botones */
+button, .button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: inline-block;
+    text-decoration: none;
+}
+
+button:hover, .button:hover {
+    transform: translateY(-2px);
+}
+
+button:active, .button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.primary-button {
+    background-color: var(--primary-color); /* Negro */
+    color: var(--text-color-light);          /* Texto blanco */
+}
+
+.primary-button:hover {
+    background-color: #333;                /* Negro ligeramente más claro */
+}
+
+.secondary-button {
+    background-color: var(--secondary-color); /* Amarillo */
+    color: var(--text-color);                   /* Texto negro */
+}
+
+.secondary-button:hover {
+    background-color: #ffda00;              /* Amarillo ligeramente más oscuro */
+}
+
+.danger-button {
+    background-color: var(--danger-color);
+    color: var(--text-color-light);
+}
+
+.success-button {
+    background-color: var(--success-color);
+    color: var(--text-color-light);
+}
+
+/* Formulario */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select,
+input[type="number"],
+input[type="date"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus,
+input[type="number"]:focus,
+input[type="date"]:focus {
+    outline: none;
+    border-color: var(--secondary-color); /* Borde amarillo al enfocar */
+    box-shadow: 0 0 4px var(--secondary-color); /* Sombra amarilla al enfocar */
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+/* Adaptación Responsiva */
+@media (max-width: 768px) {
+    .inventory-table {
+        overflow-x: auto;
+    }
+
+    .inventory-table th:nth-child(4),
+    .inventory-table td:nth-child(4) {
+        display: none;
+    }
+
+    .auth-box {
+        padding: 1.5rem;
+    }
+
+    .modal-content {
+        padding: 1.5rem;
+    }
+}
