@@ -105,6 +105,16 @@ footer {
     font-size: 1.2em;
 }
 
+/* Estilos del artículo completo */
+.articulo-completo {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px var(--sombra);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+/* Estilos del artículo */
 .articulo {
     background-color: white;
     border-radius: 15px;
@@ -173,6 +183,17 @@ footer {
 .paginacion a:hover {
     background-color: var(--amarillo);
     color: var(--negro);
+}
+
+.paginacion a.disabled {
+    color: var(--gris);
+    pointer-events: none; /* Desactiva los clics en el enlace */
+    text-decoration: none;
+}
+
+.paginacion a.disabled:hover {
+    background-color: transparent; /* Elimina el efecto hover */
+    color: var(--gris);
 }
 
 /* Estilos de la barra lateral */
@@ -313,4 +334,32 @@ footer {
 /* Estilos para ocultar artículos */
 .articulo.oculto {
     display: none;
+}
+
+/* Estilos específicos para la paginación (Asegúrate de que estén al final) */
+.paginacion a {
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 0 5px;
+    background-color: var(--fondo);
+    color: var(--negro);
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.paginacion a:hover {
+    background-color: var(--amarillo);
+    color: var(--negro);
+}
+
+.paginacion a.disabled {
+    color: var(--gris);
+    pointer-events: none; /* Desactiva los clics en el enlace */
+    text-decoration: none;
+}
+
+.paginacion a.disabled:hover {
+    background-color: transparent; /* Elimina el efecto hover */
+    color: var(--gris);
 }
