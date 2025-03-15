@@ -1,0 +1,63 @@
+    <!-- Modal -->
+    <div id="itemModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Gestionar Insumo</h3>
+                <button class="close-btn" onclick="AdminUI.closeModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="itemForm">
+                    <div class="form-group">
+                        <label for="itemName">Nombre:</label>
+                        <input type="text" id="itemName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemDescription">Descripción:</label>
+                        <textarea id="itemDescription"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemQuantity">Cantidad:</label>
+                        <input type="number" id="itemQuantity" min="0" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemUnit">Unidad de medida:</label>
+                        <select id="itemUnit" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="kg">Kilogramos</option>
+                            <option value="g">Gramos</option>
+                            <option value="l">Litros</option>
+                            <option value="unidades">Unidades</option>
+                        </select>
+                    </div>
+                     <div class="form-group">
+                        <label for="itemCostPrice">Precio de Costo:</label>
+                        <input type="number" id="itemCostPrice" min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="itemSupplier">Proveedor:</label>
+                        <input type="text" id="itemSupplier">
+                    </div>
+                    <div class="form-group">
+                        <label for="itemExpirationDate">Fecha de Caducidad:</label>
+                        <input type="date" id="itemExpirationDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="itemCategory">Categoría:</label>
+                        <input type="text" id="itemCategory">
+                    </div>
+                    <div class="form-group">
+                        <label for="itemLocation">Ubicación:</label>
+                        <input type="text" id="itemLocation">
+                    </div>
+                    <div class="form-group">
+                        <label for="itemNotes">Notas:</label>
+                        <textarea id="itemNotes"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="secondary-btn" onclick="AdminUI.closeModal()">Cancelar</button>
+                        <button type="submit" class="primary-btn">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
