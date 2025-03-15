@@ -286,3 +286,31 @@ footer {
         width: 100%;
     }
 }
+
+/* Estilos para "Mostrar más" */
+.mostrar-mas-btn {
+    display: inline-block;
+    background-color: var(--negro);
+    color: var(--amarillo);
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 20px auto; /* Centrar el botón */
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+    display:block;
+    text-align:center;
+}
+
+.mostrar-mas-btn:hover {
+    background-color: var(--amarillo);
+    color: var(--negro);
+}
+
+/* Estilos para ocultar artículos */
+.articulo.oculto {
+    display: none;
+}
