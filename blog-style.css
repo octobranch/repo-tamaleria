@@ -6,8 +6,8 @@
     --negro: #000000;
     --gris: #D9D9D9;
     --fondo: #FFF4E1;
-    --sombra: rgba(0,0,0,0.15);
-    --borde: rgba(0,0,0,0.1);
+    --sombra: rgba(0, 0, 0, 0.15);
+    --borde: rgba(0, 0, 0, 0.1);
     --transicion-rapida: all 0.2s ease-in-out;
 }
 
@@ -306,6 +306,49 @@ footer {
     .blog-sidebar {
         width: 100%;
     }
+
+    /* Estilos para el menú hamburguesa en pantallas pequeñas */
+    header {
+        flex-direction: column; /* Apila el logo y la navegación */
+        align-items: flex-start; /* Alinea a la izquierda */
+    }
+
+    .logo-carousel {
+        margin: 10px 0; /* Reduce el margen */
+    }
+
+    nav {
+        width: 100%; /* Ocupa todo el ancho */
+        display: none; /* Oculta la navegación por defecto */
+    }
+
+    nav.active {
+        display: block; /* Muestra la navegación cuando está activa */
+    }
+
+    #menu-items {
+        flex-direction: column; /* Apila los elementos del menú */
+        align-items: flex-start; /* Alinea a la izquierda */
+        width: 100%;
+        display: none; /* Oculta por defecto */
+    }
+    #menu-items.show{
+        display: block; /* Muestra cuando se activa */
+    }
+
+    #menu-items li {
+        margin-bottom: 10px; /* Espacio entre elementos del menú */
+    }
+
+    .menu-toggle {
+        display: block; /* Muestra el botón del menú hamburguesa */
+        cursor: pointer;
+        padding: 10px;
+        background-color: var(--negro);
+        color: var(--amarillo);
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
 }
 
 /* Estilos para "Mostrar más" */
@@ -321,9 +364,9 @@ footer {
     transition: background-color 0.3s, color 0.3s;
     cursor: pointer;
     border: none;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-    display:block;
-    text-align:center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    display: block;
+    text-align: center;
 }
 
 .mostrar-mas-btn:hover {
