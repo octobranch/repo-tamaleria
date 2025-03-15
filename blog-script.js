@@ -4,22 +4,31 @@
     const nav = document.querySelector('nav');
     const menuItems = document.getElementById('menu-items');
 
-    menuToggle.addEventListener('click', () => {
-        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-        menuToggle.classList.toggle('active');
-        nav.classList.toggle('active');
-        menuToggle.setAttribute('aria-expanded', !expanded);
-    });
+    if (menuToggle && nav && menuItems) {
+        menuToggle.addEventListener('click', (event) => {
+            event.preventDefault(); // Evita comportamientos inesperados
+            //const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false; // No es necesario leer el atributo para alternar
+            menuToggle.classList.toggle('active');
+            nav.classList.toggle('active');
+            //menuToggle.setAttribute('aria-expanded', !expanded); // No es necesario establecer el atributo manualmente con toggle
+            // Alternar la visibilidad de los items del menu
+            menuItems.classList.toggle('show');
+        });
 
-    // Cerrar menú al hacer clic en un enlace
-    menuItems.addEventListener('click', (event) => {
-        if (event.target.tagName === 'A') {
-            nav.classList.remove('active');
-            menuToggle.classList.remove('active');
-            menuToggle.setAttribute('aria-expanded', false);
-        }
-    });
-    // Funcionalidad de búsqueda
+        // Cerrar menú al hacer clic en un enlace
+        menuItems.addEventListener('click', (event) => {
+            if (event.target.tagName === 'A') {
+                nav.classList.remove('active');
+                menuToggle.classList.remove('active');
+                 menuItems.classList.remove('show');
+                //menuToggle.setAttribute('aria-expanded', false); // No es necesario establecer el atributo manualmente
+            }
+        });
+    } else {
+        console.error('Uno o más elementos del menú hamburguesa no se encontraron.');
+    }
+
+    // Funcionalidad de búsqueda (sin cambios, asumiendo que funciona bien)
     const searchInput = document.querySelector('.busqueda input[type="text"]');
     const articulos = document.querySelectorAll('.articulo');
 
@@ -38,7 +47,7 @@
         });
     });
 
-     // Mostrar más artículos (inicialmente ocultos)
+    // Mostrar más artículos (sin cambios, asumiendo que funciona bien)
     const articulosOcultos = Array.from(document.querySelectorAll('.articulo')).slice(3); // Obtener artículos después del tercero
 
     articulosOcultos.forEach(articulo => {
