@@ -129,6 +129,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const email = document.getElementById('email').value;
         const mensaje = document.getElementById('mensaje').value;
 
+        if (!nombre || !email || !mensaje) {
+            alert('Por favor, complete todos los campos del formulario.');
+            return;
+        }
+
         let mensajeWhatsApp = `¡Hola! Soy ${nombre} (${email}) y quiero contactarlos con el siguiente mensaje:\n\n${mensaje}`;
         const telefono = '529981901967'; // Reemplaza con el número de teléfono real
         const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensajeWhatsApp)}`;
