@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const mensaje = document.getElementById('mensaje').value;
 
         if (!nombre || !email || !mensaje) {
-            alert('Por favor, complete todos los campos del formulario.');
+            alert('Por favor, complete todos los campos.');
             return;
         }
 
