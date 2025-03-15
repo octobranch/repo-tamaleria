@@ -34,7 +34,13 @@
         </div>
 
         <nav aria-label="Menú principal">
-            <ul>
+            <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="menu-items">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <span class="sr-only">Menú</span>
+            </button>
+            <ul id="menu-items">
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="blog.html#articulos">Artículos</a></li>
                 <li><a href="categorias.html">Categorías</a></li>
