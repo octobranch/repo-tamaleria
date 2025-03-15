@@ -510,3 +510,36 @@ footer {
         font-size: 2em;
     }
 }
+
+/* Estilos para la paginación */
+.paginacion {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.paginacion a {
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 0 5px;
+    background-color: var(--fondo);
+    color: var(--negro);
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.paginacion a:hover {
+    background-color: var(--amarillo);
+    color: var(--negro);
+}
+
+.paginacion a.disabled {
+    color: var(--gris);
+    pointer-events: none; /* Desactiva los clics en el enlace */
+    text-decoration: none;
+}
+
+.paginacion a.disabled:hover {
+    background-color: transparent; /* Elimina el efecto hover */
+    color: var(--gris);
+}
