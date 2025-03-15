@@ -1,4 +1,4 @@
- document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     // Menu Hamburguesa
     const menuToggle = document.getElementById('menu-toggle');
     const nav = document.querySelector('nav');
@@ -7,11 +7,8 @@
     if (menuToggle && nav && menuItems) {
         menuToggle.addEventListener('click', (event) => {
             event.preventDefault(); // Evita comportamientos inesperados
-            //const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false; // No es necesario leer el atributo para alternar
             menuToggle.classList.toggle('active');
             nav.classList.toggle('active');
-            //menuToggle.setAttribute('aria-expanded', !expanded); // No es necesario establecer el atributo manualmente con toggle
-            // Alternar la visibilidad de los items del menu
             menuItems.classList.toggle('show');
         });
 
@@ -20,8 +17,7 @@
             if (event.target.tagName === 'A') {
                 nav.classList.remove('active');
                 menuToggle.classList.remove('active');
-                 menuItems.classList.remove('show');
-                //menuToggle.setAttribute('aria-expanded', false); // No es necesario establecer el atributo manualmente
+                menuItems.classList.remove('show');
             }
         });
     } else {
@@ -67,35 +63,4 @@
         });
         btnMostrarMas.style.display = 'none'; // Ocultar el botón después de mostrar todos los artículos
     });
-
-    // Estilos para "Mostrar más" (Asegúrate de que estos estilos estén en tu CSS)
-   /* const style = document.createElement('style');
-    style.textContent = `
-        .mostrar-mas-btn {
-            display: inline-block;
-            background-color: var(--negro);
-            color: var(--amarillo);
-            padding: 12px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 20px auto; /* Centrar el botón */
-            transition: background-color 0.3s, color 0.3s;
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-            display:block;
-            text-align:center;
-        }
-
-        .mostrar-mas-btn:hover {
-            background-color: var(--amarillo);
-            color: var(--negro);
-        }
-
-        .articulo.oculto {
-            display: none;
-        }
-    `;
-    document.head.appendChild(style);*/
 });
