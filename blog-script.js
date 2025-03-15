@@ -73,9 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function actualizarBotones() {
-        btnAnterior.style.display = paginaActual === 1 ? 'none' : 'inline-block';
-        btnSiguiente.style.display = paginaActual === numPaginas ? 'none' : 'inline-block';
+     function actualizarBotones() {
+        btnAnterior.style.display = (numPaginas > 1 && paginaActual > 1) ? 'inline-block' : 'none';
+        btnSiguiente.style.display = (numPaginas > 1 && paginaActual < numPaginas) ? 'inline-block' : 'none';
     }
 
     btnAnterior.addEventListener('click', (e) => {
