@@ -5,17 +5,17 @@
     --amarillo: #FFE63E;
     --negro: #000000;
     --gris: #D9D9D9;
-    --fondo: #FFF4E1;
-    --sombra: rgba(0, 0, 0, 0.15);
+    --fondo: #1E1E1E; /* Fondo oscuro para coherencia */
+    --sombra: rgba(0, 0, 0, 0.25); /* Sombra más pronunciada */
     --borde: rgba(0, 0, 0, 0.1);
     --transicion-rapida: all 0.2s ease-in-out;
 }
 
 /* Estilos generales */
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif; /* Mantiene la fuente original del blog */
     background-color: var(--fondo);
-    color: var(--negro);
+    color: var(--amarillo); /* Texto principal en amarillo */
     line-height: 1.7;
     margin: 0;
     padding: 0;
@@ -30,10 +30,10 @@ body {
 
 /* Estilos del encabezado */
 header {
-    background-color: var(--fondo);
+    background-color: rgba(0, 0, 0, 0.8); /* Header negro semi-transparente */
     padding: 10px 20px;
     transition: var(--transicion-rapida);
-    box-shadow: 0 2px 5px var(--sombra);
+    box-shadow: 0 4px 8px var(--sombra); /* Sombra más notoria */
     position: sticky;
     top: 0;
     z-index: 100;
@@ -94,11 +94,14 @@ footer {
     border-radius: 15px;
     text-align: center;
     margin-bottom: 30px;
+    animation: fadeIn 1s ease-out; /* Animación de entrada */
 }
 
 .blog-banner h1 {
     font-size: 2.5em;
     margin-bottom: 15px;
+    transition: transform 0.3s, color 0.3s;
+    animation: pulse 2s infinite alternate; /* Animación de pulso */
 }
 
 .blog-banner p {
@@ -107,7 +110,7 @@ footer {
 
 /* Estilos del artículo completo */
 .articulo-completo {
-    background-color: white;
+    background-color: rgba(255, 230, 62, 0.05); /* Fondo amarillo sutil */
     border-radius: 15px;
     box-shadow: 0 4px 8px var(--sombra);
     padding: 20px;
@@ -116,7 +119,7 @@ footer {
 
 /* Estilos del artículo */
 .articulo {
-    background-color: white;
+    background-color: rgba(255, 230, 62, 0.05); /* Fondo amarillo sutil */
     border-radius: 15px;
     box-shadow: 0 4px 8px var(--sombra);
     margin-bottom: 30px;
@@ -125,6 +128,7 @@ footer {
 
 .articulo:hover {
     transform: translateY(-5px);
+    box-shadow: 0 0 10px var(--amarillo); /* Resaltado al hacer hover */
 }
 
 .articulo img {
@@ -139,6 +143,12 @@ footer {
 .articulo h3 {
     font-size: 1.5em;
     margin: 20px;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.articulo h3:hover {
+    transform: scale(1.05);
+    color: var(--amarillo);
 }
 
 .articulo p {
@@ -148,19 +158,22 @@ footer {
 
 .leer-mas {
     display: inline-block;
-    background-color: var(--negro);
-    color: var(--amarillo);
+    background-color: var(--amarillo);
+    color: var(--negro);
     padding: 12px 25px;
     border-radius: 30px;
     text-decoration: none;
     font-weight: bold;
     margin: 0 20px 25px 20px;
     transition: background-color 0.3s, color 0.3s;
+    border: 2px solid var(--negro); /* Añade borde negro para destacar */
 }
 
 .leer-mas:hover {
-    background-color: var(--amarillo);
-    color: var(--negro);
+    background-color: var(--negro);
+    color: var(--amarillo);
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px var(--amarillo); /* Resaltado al hacer hover */
 }
 
 /* Estilos de la paginación */
@@ -174,7 +187,7 @@ footer {
     padding: 10px 15px;
     margin: 0 5px;
     background-color: var(--fondo);
-    color: var(--negro);
+    color: var(--amarillo);
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
@@ -202,9 +215,9 @@ footer {
 }
 
 .sidebar-widget {
-    background-color: white;
+    background-color: rgba(255, 230, 62, 0.05); /* Fondo amarillo sutil */
     border-radius: 15px;
-    box-shadow: 0 2px 5px var(--sombra);
+    box-shadow: 0 4px 8px var(--sombra);
     margin-bottom: 30px;
     padding: 20px;
 }
@@ -214,6 +227,7 @@ footer {
     margin-bottom: 15px;
     border-bottom: 2px solid var(--amarillo);
     padding-bottom: 10px;
+    color: var(--amarillo); /* Títulos en amarillo */
 }
 
 /* Estilos del widget de búsqueda */
@@ -227,11 +241,13 @@ footer {
     border-radius: 5px 0 0 5px;
     flex-grow: 1;
     outline: none;
+    background-color: rgba(255, 230, 62, 0.1); /* Fondo amarillo sutil */
+    color: var(--gris); /* Texto en gris para contraste */
 }
 
 .busqueda button {
-    background-color: var(--negro);
-    color: var(--amarillo);
+    background-color: var(--amarillo);
+    color: var(--negro);
     border: none;
     padding: 10px 15px;
     border-radius: 0 5px 5px 0;
@@ -240,8 +256,8 @@ footer {
 }
 
 .busqueda button:hover {
-    background-color: var(--amarillo);
-    color: var(--negro);
+    background-color: var(--negro);
+    color: var(--amarillo);
 }
 
 /* Estilos de las listas de categorías y archivos */
@@ -259,7 +275,7 @@ footer {
 
 .categorias-lista a,
 .archivos-lista a {
-    color: var(--negro);
+    color: var(--amarillo); /* Enlaces en amarillo */
     text-decoration: none;
     display: block;
     padding: 8px 12px;
@@ -269,8 +285,10 @@ footer {
 
 .categorias-lista a:hover,
 .archivos-lista a:hover {
-    background-color: var(--amarillo);
-    color: var(--negro);
+    background-color: var(--negro);
+    color: var(--amarillo);
+    transform: scale(1.05);
+    box-shadow: 0 0 5px var(--amarillo); /* Resaltado al hacer hover */
 }
 
 /* Estilos de las publicaciones recientes */
@@ -279,9 +297,15 @@ footer {
 }
 
 .publicaciones-recientes a {
-    color: var(--negro);
+    color: var(--amarillo); /* Enlaces en amarillo */
     text-decoration: none;
     font-weight: 600;
+}
+
+.publicaciones-recientes a:hover {
+    transform: scale(1.05);
+    color: var(--amarillo);
+    text-shadow: 0 0 5px var(--amarillo); /* Resaltado al hacer hover */
 }
 
 .publicaciones-recientes time {
@@ -332,7 +356,8 @@ footer {
         width: 100%;
         display: none; /* Oculta por defecto */
     }
-    #menu-items.show{
+
+    #menu-items.show {
         display: block; /* Muestra cuando se activa */
     }
 
@@ -344,8 +369,8 @@ footer {
         display: block; /* Muestra el botón del menú hamburguesa */
         cursor: pointer;
         padding: 10px;
-        background-color: var(--negro);
-        color: var(--amarillo);
+        background-color: var(--amarillo);
+        color: var(--negro);
         border-radius: 5px;
         margin-bottom: 10px;
     }
@@ -354,8 +379,8 @@ footer {
 /* Estilos para "Mostrar más" */
 .mostrar-mas-btn {
     display: inline-block;
-    background-color: var(--negro);
-    color: var(--amarillo);
+    background-color: var(--amarillo);
+    color: var(--negro);
     padding: 12px 25px;
     border-radius: 30px;
     text-decoration: none;
@@ -363,15 +388,17 @@ footer {
     margin: 20px auto; /* Centrar el botón */
     transition: background-color 0.3s, color 0.3s;
     cursor: pointer;
-    border: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    border: 2px solid var(--negro); /* Añade borde negro para destacar */
+    box-shadow: 0 4px 6px var(--sombra);
     display: block;
     text-align: center;
 }
 
 .mostrar-mas-btn:hover {
-    background-color: var(--amarillo);
-    color: var(--negro);
+    background-color: var(--negro);
+    color: var(--amarillo);
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px var(--amarillo); /* Resaltado al hacer hover */
 }
 
 /* Estilos para ocultar artículos */
@@ -385,7 +412,7 @@ footer {
     padding: 10px 15px;
     margin: 0 5px;
     background-color: var(--fondo);
-    color: var(--negro);
+    color: var(--amarillo);
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
@@ -405,4 +432,25 @@ footer {
 .paginacion a.disabled:hover {
     background-color: transparent; /* Elimina el efecto hover */
     color: var(--gris);
+}
+
+/* Animaciones Keyframes (Asegúrate de que estén definidas) */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
