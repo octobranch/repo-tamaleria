@@ -69,7 +69,7 @@
     });
 
     // Estilos para "Mostrar más" (Asegúrate de que estos estilos estén en tu CSS)
-    const style = document.createElement('style');
+   /* const style = document.createElement('style');
     style.textContent = `
         .mostrar-mas-btn {
             display: inline-block;
@@ -97,5 +97,5 @@
             display: none;
         }
     `;
-    document.head.appendChild(style);
+    document.head.appendChild(style);*/
 });
