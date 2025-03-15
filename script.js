@@ -147,6 +147,36 @@ document.addEventListener('DOMContentLoaded', function() {
         window.open(url, '_blank');
     });
 
+     // Ajuste de desplazamiento para el header fijo
+     const headerHeight = document.querySelector('header').offsetHeight;
+
+     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+         anchor.addEventListener('click', function (e) {
+             e.preventDefault();
+
+             const targetId = this.getAttribute('href').substring(1);
+             const targetElement = document.getElementById(targetId);
+
+             if (targetElement) {
+                 const targetOffsetTop = targetElement.offsetTop - headerHeight + 10; // Ajuste para el desplazamiento
+
+                 window.scrollTo({
+                     top: targetOffsetTop,
+                     behavior: 'smooth'
+                 });
+             }
+         });
+     });
+
+        // Ajuste del enlace de contacto en el footer
+     const contactoFooter = document.querySelector('.footer-info a[href="tel:+529981901967"]');
+     if (contactoFooter) {
+         contactoFooter.addEventListener('click', function(event) {
+             event.preventDefault(); // Evita la acción predeterminada del enlace
+             window.location.href = "tel:+529981901967"; // Redirige directamente al número de teléfono
+         });
+     }
+
     // Inicializar ScrollReveal
     ScrollReveal({
         reset: false,
