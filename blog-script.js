@@ -1,4 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Menu Hamburguesa
+    const menuToggle = document.getElementById('menu-toggle');
+    const nav = document.querySelector('nav');
+    const menuItems = document.getElementById('menu-items');
+
+    menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.classList.toggle('active');
+        nav.classList.toggle('active');
+        menuToggle.setAttribute('aria-expanded', !expanded);
+    });
+
+    // Cerrar menú al hacer clic en un enlace
+    menuItems.addEventListener('click', (event) => {
+        if (event.target.tagName === 'A') {
+            nav.classList.remove('active');
+            menuToggle.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', false);
+        }
+    });
+
     // Funcionalidad de búsqueda
     const searchInput = document.querySelector('.busqueda input[type="text"]');
     const articulos = document.querySelectorAll('.articulo');
@@ -60,8 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     `;
     document.head.appendChild(style);
-
-    // Efecto hover en las categorías (se mueve al CSS)
 
     // Ajuste de desplazamiento para el header fijo
     const headerHeight = document.querySelector('header').offsetHeight;
