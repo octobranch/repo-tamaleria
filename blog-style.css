@@ -31,50 +31,35 @@ body {
 /* Estilos del encabezado */
 header {
     background-color: var(--fondo);
-    padding: 20px 0;
+    padding: 10px 20px;
+    transition: var(--transicion-rapida);
     box-shadow: 0 2px 5px var(--sombra);
     position: sticky;
     top: 0;
     z-index: 100;
-}
-
-header .logo-carousel {
-    height: 100px;
-    max-height: 100px; 
-    margin: 0 auto;
-    text-align: center;
-    overflow: hidden; 
-}
-
-
-nav {
-    background-color: var(--negro);
-    border-radius: 30px;
-    box-shadow: 0 2px 5px var(--sombra);
-    margin-top: 20px;
-}
-
-nav ul {
     display: flex;
-    justify-content: center;
-    list-style: none;
-    padding: 15px;
-    margin: 0;
+    justify-content: space-between;
+    align-items: center;
 }
 
-nav a {
-    color: var(--amarillo);
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-weight: 600;
-    transition: color 0.3s, transform 0.3s;
+.logo-carousel {
+    height: 100px;
+    width: 115px;
+    position: relative;
+    margin: 20px 0;
 }
 
-nav a:hover {
-    color: white;
-    transform: scale(1.1);
-    background-color: rgba(255, 255, 255, 0.1);
+.logo-carousel img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.logo-carousel img.logo-active {
+    opacity: 1;
 }
 
 /* Estilos del pie de página */
