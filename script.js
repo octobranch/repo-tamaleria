@@ -125,12 +125,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const enviarContactoBtn = document.getElementById('enviar-contacto');
 
     enviarContactoBtn.addEventListener('click', () => {
-        const nombre = document.getElementById('nombre').value;
-        const email = document.getElementById('email').value;
-        const mensaje = document.getElementById('mensaje').value;
+        const nombre = document.getElementById('nombre').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const mensaje = document.getElementById('mensaje').value.trim();
 
         if (!nombre || !email || !mensaje) {
-            alert('Por favor, complete todos los campos.');
+            alert('Por favor, complete todos los campos del formulario.');
+            return;
+        }
+
+        // Validación del formato del correo electrónico
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Por favor, ingrese un correo electrónico válido.');
             return;
         }
 
