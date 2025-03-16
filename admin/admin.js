@@ -26,7 +26,7 @@ class AdminUI {
         });
 
         //Reporte PDF
-         document.getElementById('exportPdfBtn').addEventListener('click', this.exportInventoryToPdf);
+        document.getElementById('exportPdfBtn').addEventListener('click', this.exportInventoryToPdf);
     }
 
     static async checkAuthState() {
@@ -39,18 +39,26 @@ class AdminUI {
             });
 
             if (user) {
-                const isAdmin = await this.verifyAdminRole(user.uid);
-                if (isAdmin) {
-                    this.showDashboard();
-                    this.loadInventory();
-                    this.updateUserRoleDisplay("Administrador"); //Actualizar el mensaje del rol de usuario
+                const userDoc = await firebase.getDoc(firebase.doc(firebase.db, 'admins', user.uid));
+                if (userDoc.exists()) {
+                    const userData = userDoc.data();
+                    const role = userData.role;
+
+                    this.showDashboard(role); // Pasar el rol a la función showDashboard
+                    this.updateUserRoleDisplay(role);
+
+                    // Cargar datos según el rol (ejemplo)
+                    if (role === 'administrador' || role === 'CEO' || role === 'gerente') {
+                        this.loadInventory();
+                    } else if (role === 'cajero') {
+                        // Cargar datos relacionados con ventas
+                    }
                 } else {
-                    this.showAuthError('No tienes permisos de administrador');
-                    this.updateUserRoleDisplay("Usuario sin permisos");
+                    this.showAuthError('No tienes permisos.');
                     await firebase.auth.signOut();
                 }
             } else {
-                this.showAuth(); // Mostrar el formulario de autenticación si no hay usuario autenticado
+                this.showAuth();
             }
         } catch (error) {
             console.error('Error verifying auth:', error);
@@ -254,13 +262,13 @@ class AdminUI {
     }
 
     static searchItems(event) {
-      const searchTerm = event.target.value.toLowerCase();
-      // Aquí debes implementar la lógica de búsqueda.  Puedes filtrar los
-      // elementos que ya están en la tabla (si la cantidad de datos es pequeña)
-      // o realizar una nueva consulta a Firestore (si la cantidad de datos es grande).
-      // Por ahora, lo dejaremos como un placeholder.
-      console.log(`Buscando: ${searchTerm}`);
-      // **TODO:** Implementar la lógica de búsqueda.
+        const searchTerm = event.target.value.toLowerCase();
+        // Aquí debes implementar la lógica de búsqueda.  Puedes filtrar los
+        // elementos que ya están en la tabla (si la cantidad de datos es pequeña)
+        // o realizar una nueva consulta a Firestore (si la cantidad de datos es grande).
+        // Por ahora, lo dejaremos como un placeholder.
+        console.log(`Buscando: ${searchTerm}`);
+        // **TODO:** Implementar la lógica de búsqueda.
     }
 
     static showLoading() {
@@ -299,17 +307,29 @@ class AdminUI {
                 return 'Error de autenticación.';
         }
     }
+
     static showAuth() {
         document.getElementById('dashboardContainer').style.display = 'none';
         document.getElementById('authContainer').style.display = 'flex';
     }
 
-    static showDashboard() {
+    static showDashboard(role) {
         document.getElementById('authContainer').style.display = 'none';
         document.getElementById('dashboardContainer').style.display = 'flex';
 
-         // Mostrar la sección de inventario por defecto
-        this.showSection('inventory');
+        // Ocultar todas las secciones por defecto
+        document.querySelectorAll('.dashboard-section').forEach(section => {
+            section.style.display = 'none';
+        });
+
+        // Mostrar secciones específicas según el rol
+        if (role === 'administrador' || role === 'CEO' || role === 'gerente') {
+            document.getElementById('inventorySection').style.display = 'block';
+            document.getElementById('promotionsSection').style.display = 'block';
+            document.getElementById('reportsSection').style.display = 'block';
+        } else if (role === 'cajero') {
+            document.getElementById('ventasSection').style.display = 'block'; // Asumiendo que tienes una sección de ventas
+        }
     }
 
     static showPasswordModal() {
@@ -350,12 +370,12 @@ class AdminUI {
         }
     }
 
-     static handleSidebarClick(event) {
+    static handleSidebarClick(event) {
         const section = event.target.dataset.section;
         AdminUI.showSection(section);
     }
 
-     static showSection(sectionId) {
+    static showSection(sectionId) {
         // Ocultar todas las secciones
         document.querySelectorAll('.dashboard-section').forEach(section => {
             section.style.display = 'none';
@@ -370,13 +390,66 @@ class AdminUI {
     }
 
     static async exportInventoryToPdf() {
-    try {
-        const inventory = await AdminUI.getAllInventoryItems(); // Obtener todos los items del inventario
+        try {
+            const inventory = await AdminUI.getAllInventoryItems(); // Obtener todos los items del inventario
 
-        if (!inventory || inventory.length === 0) {
-            AdminUI.showError("No hay datos de inventario para exportar.");
-            return;
+            if (!inventory || inventory.length === 0) {
+                AdminUI.showError("No hay datos de inventario para exportar.");
+                return;
+            }
+
+            // Configuración del documento PDF
+            const doc = new jspdf.jsPDF();
+            doc.text("Inventario", 10, 10);
+
+            // Encabezados de la tabla
+            const headers = ["Nombre", "Cantidad", "Unidad", "Precio", "Proveedor", "Caducidad", "Categoría", "Ubicación", "Notas"];
+
+            // Data para la tabla
+            const data = inventory.map(item => [
+                item.name,
+                item.quantity,
+                item.unit,
+                item.costPrice,
+                item.supplier,
+                item.expirationDate,
+                item.category,
+                item.location,
+                item.notes
+            ]);
+
+            // Generar la tabla con autotable
+            doc.autoTable({
+                head: [headers],
+                body: data,
+            });
+
+            // Guardar el PDF
+            doc.save("inventario.pdf");
+
+        } catch (error) {
+            console.error("Error al exportar a PDF:", error);
+            AdminUI.showError("Error al exportar el inventario a PDF.");
         }
+    }
 
-        // Configuración del documento PDF
-        const doc = new jspdf.J
+    static async getAllInventoryItems() {
+        //Obtener el inventario sin los snapshot para el PDF
+        try {
+            const q = firebase.query(firebase.collection(firebase.db, 'inventory'));
+            const querySnapshot = await firebase.getDocs(q);
+            const items = [];
+            querySnapshot.forEach((doc) => {
+                items.push(doc.data());
+            });
+            return items;
+        } catch (error) {
+            console.error("Error al obtener el inventario:", error);
+            AdminUI.showError("Error al obtener el inventario.");
+            return null
+        }
+    }
+}
+
+// Inicialización
+document.addEventListener('DOMContentLoaded', () => AdminUI.init());
