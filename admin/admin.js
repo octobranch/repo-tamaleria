@@ -14,11 +14,11 @@ class AdminUI {
 
         //Inventario
         document.getElementById('addItemBtn').addEventListener('click', () => this.showModal());
-        document.getElementById('itemForm').addEventListener('submit', this.saveItem);
+        document.getElementById('itemForm').addEventListener('submit', this.validateItemForm); // Validar formulario antes de guardar
         document.getElementById('searchInput').addEventListener('input', this.searchItems);
 
         // Modales
-        document.getElementById('passwordForm').addEventListener('submit', this.changePassword);
+        document.getElementById('passwordForm').addEventListener('submit', this.validatePasswordForm); // Validar formulario antes de cambiar contraseña
 
         //Sidebar
         document.querySelectorAll('.admin-sidebar nav ul li').forEach(item => {
@@ -153,6 +153,31 @@ class AdminUI {
         }
     }
 
+    static validateItemForm(event) {
+        event.preventDefault(); // Prevenir el envío por defecto
+
+        const itemName = document.getElementById('itemName').value;
+        const itemQuantity = document.getElementById('itemQuantity').value;
+        const itemUnit = document.getElementById('itemUnit').value;
+
+        if (!itemName || itemName.trim() === "") {
+            AdminUI.showError('Por favor, ingrese el nombre del insumo.');
+            return;
+        }
+
+        if (!itemQuantity || isNaN(itemQuantity) || parseFloat(itemQuantity) <= 0) {
+            AdminUI.showError('Por favor, ingrese una cantidad válida mayor que cero.');
+            return;
+        }
+
+        if (!itemUnit) {
+            AdminUI.showError('Por favor, seleccione la unidad de medida.');
+            return;
+        }
+
+        // Si la validación pasa, procede a guardar el elemento
+        AdminUI.saveItem(event);
+    }
 
     static async saveItem(event) {
         event.preventDefault();
@@ -167,17 +192,6 @@ class AdminUI {
         const itemCategory = document.getElementById('itemCategory').value;
         const itemLocation = document.getElementById('itemLocation').value;
         const itemNotes = document.getElementById('itemNotes').value;
-
-        // Validaciones
-        if (!itemName || !itemQuantity || !itemUnit) {
-            AdminUI.showError('Por favor, complete los campos obligatorios (Nombre, Cantidad, Unidad).');
-            return;
-        }
-
-        if (isNaN(itemQuantity) || itemQuantity <= 0) {
-            AdminUI.showError('La cantidad debe ser un número mayor que cero.');
-            return;
-        }
 
         const itemData = {
             name: itemName,
@@ -342,14 +356,14 @@ class AdminUI {
         modal.style.display = 'none';
     }
 
-    static async changePassword(event) {
+     static validatePasswordForm(event) {
         event.preventDefault();
 
         const newPassword = document.getElementById('newPassword').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
 
-        if (newPassword !== confirmPassword) {
-            AdminUI.showError('Las contraseñas no coinciden.');
+         if (!newPassword || newPassword.trim() === "") {
+            AdminUI.showError('Por favor, ingrese la nueva contraseña.');
             return;
         }
 
@@ -357,6 +371,21 @@ class AdminUI {
             AdminUI.showError('La contraseña debe tener al menos 6 caracteres.');
             return;
         }
+
+        if (newPassword !== confirmPassword) {
+            AdminUI.showError('Las contraseñas no coinciden.');
+            return;
+        }
+
+          // Si la validación pasa, procede a guardar la contraseña
+        AdminUI.changePassword(event);
+    }
+
+    static async changePassword(event) {
+        event.preventDefault();
+
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
 
         try {
             const user = firebase.auth.currentUser; //Obtenemos el usuario logeado
