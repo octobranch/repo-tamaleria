@@ -110,6 +110,27 @@ body {
     display: none; /* Ocultar todas las secciones por defecto */
 }
 
+/* Dashboard Metrics */
+.dashboard-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.metric-card {
+    background: var(--surface-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    padding: 1.5rem;
+    width: calc(50% - 1.5rem); /* Dos tarjetas por fila */
+}
+
+.metric-card h3 {
+    margin-top: 0;
+    font-size: 1.25rem;
+}
+
 /* Tabla de inventario */
 .inventory-table {
     width: 100%;
@@ -341,6 +362,15 @@ label {
     .modal-content {
         padding: 1.5rem;
     }
+
+     /* Ajuste para las métricas en pantallas pequeñas */
+    .dashboard-metrics {
+        flex-direction: column;
+    }
+
+    .metric-card {
+        width: 100%; /* Ocupar todo el ancho en pantallas pequeñas */
+    }
 }
 
 /* Estilos específicos para el botón Exportar a PDF */
@@ -352,4 +382,45 @@ label {
 
 #exportPdfBtn:hover {
     background-color: #218838; /* Verde ligeramente más oscuro al pasar el mouse */
+}
+
+/* Estilos específicos para la tabla de promociones */
+.promotion-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.promotion-table th, .promotion-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.promotion-table th {
+    background-color: var(--accent-color);
+    font-weight: 500;
+}
+
+.promotion-controls {
+    margin-bottom: 1rem;
+    text-align: right;
+}
+
+/*Report Section*/
+.report-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.report-controls label {
+    font-weight: 500;
+}
+
+.report-chart-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
 }
