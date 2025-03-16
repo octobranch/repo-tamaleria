@@ -153,6 +153,10 @@ class AdminUI {
         }
     }
 
+    /**
+     * Valida el formulario de "Gestionar Insumo" antes de guardar los datos.
+     * @param {Event} event - El objeto evento del formulario.
+     */
     static validateItemForm(event) {
         event.preventDefault(); // Prevenir el envío por defecto
 
@@ -179,6 +183,10 @@ class AdminUI {
         AdminUI.saveItem(event);
     }
 
+    /**
+     * Guarda un nuevo insumo o actualiza uno existente en Firestore.
+     * @param {Event} event - El objeto evento del formulario.
+     */
     static async saveItem(event) {
         event.preventDefault();
 
@@ -229,11 +237,17 @@ class AdminUI {
         }
     }
 
-
+    /**
+     * Renderiza la lista de inventario en la tabla.
+     * @param {Array<Object>} items - Un array de objetos que representan los insumos.
+     */
     static renderInventory(items) {
         const tbody = document.getElementById('inventoryList');
-        tbody.innerHTML = items.map(item => `
-            <tr>
+        tbody.innerHTML = ''; // Limpiar la tabla antes de renderizar
+
+        items.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
                 <td>${item.name}</td>
                 <td>${item.quantity}</td>
                 <td>${item.unit}</td>
@@ -248,20 +262,20 @@ class AdminUI {
                     <button class="edit-btn" data-id="${item.id}">✏️</button>
                     <button class="delete-btn" data-id="${item.id}">🗑️</button>
                 </td>
-            </tr>
-        `).join('');
+            `;
+            tbody.appendChild(row);
 
-        // Bind edit/delete events
-        document.querySelectorAll('.edit-btn').forEach(btn => {
-            btn.addEventListener('click', () => this.showModal(btn.dataset.id));
-        });
-
-        document.querySelectorAll('.delete-btn').forEach(btn => {
-            btn.addEventListener('click', () => this.handleDelete(btn.dataset.id));
+            // Agregar event listeners para editar y eliminar
+            row.querySelector('.edit-btn').addEventListener('click', () => this.showModal(item.id));
+            row.querySelector('.delete-btn').addEventListener('click', () => this.handleDelete(item.id));
         });
     }
 
 
+    /**
+     * Elimina un insumo del inventario en Firestore.
+     * @param {string} itemId - El ID del insumo a eliminar.
+     */
     static async handleDelete(itemId) {
         if (confirm("¿Estás seguro de que quieres eliminar este insumo?")) {
             try {
@@ -275,14 +289,49 @@ class AdminUI {
         }
     }
 
+    /**
+     * Busca insumos en el inventario.
+     * @param {Event} event - El objeto evento del input de búsqueda.
+     */
     static searchItems(event) {
         const searchTerm = event.target.value.toLowerCase();
         // Aquí debes implementar la lógica de búsqueda.  Puedes filtrar los
         // elementos que ya están en la tabla (si la cantidad de datos es pequeña)
         // o realizar una nueva consulta a Firestore (si la cantidad de datos es grande).
-        // Por ahora, lo dejaremos como un placeholder.
-        console.log(`Buscando: ${searchTerm}`);
-        // **TODO:** Implementar la lógica de búsqueda.
+
+        //Limpiamos la tabla
+         const tbody = document.getElementById('inventoryList');
+         tbody.innerHTML = "";
+
+        //Realizamos la busqueda
+        AdminUI.filterInventory(searchTerm);
+    }
+
+    /**
+     * Filtra el inventario basado en el término de búsqueda.
+     * @param {string} searchTerm - El término de búsqueda.
+     */
+     static async filterInventory(searchTerm){
+        //Obtenemos toda la coleccion
+        const q = firebase.query(firebase.collection(firebase.db, 'inventory'));
+
+        //Realizamos la consulta
+        const unsubscribe = firebase.onSnapshot(q, (snapshot) => {
+            //Array donde se guardaran los resultados de la busqueda
+            const items = [];
+            snapshot.forEach(doc => {
+                 //Convertimos el documento en data
+                 let item = doc.data()
+                 //Convertimos a minusculas para que no sea sencible a mayusculas
+                if(item.name.toLowerCase().includes(searchTerm) || item.category.toLowerCase().includes(searchTerm) || item.description.toLowerCase().includes(searchTerm)){
+                     //Si lo encuentra lo agregamos al array
+                    items.push({ id: doc.id, ...doc.data() })
+                }
+
+            });
+            //Renderizamos la información
+            this.renderInventory(items);
+        });
     }
 
     static showLoading() {
@@ -356,7 +405,11 @@ class AdminUI {
         modal.style.display = 'none';
     }
 
-     static validatePasswordForm(event) {
+     /**
+     * Valida el formulario de cambio de contraseña antes de guardar la nueva contraseña.
+     * @param {Event} event - El objeto evento del formulario.
+     */
+    static validatePasswordForm(event) {
         event.preventDefault();
 
         const newPassword = document.getElementById('newPassword').value;
@@ -381,11 +434,14 @@ class AdminUI {
         AdminUI.changePassword(event);
     }
 
+    /**
+     * Cambia la contraseña del usuario actual en Firebase Authentication.
+     * @param {Event} event - El objeto evento del formulario.
+     */
     static async changePassword(event) {
         event.preventDefault();
 
         const newPassword = document.getElementById('newPassword').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
 
         try {
             const user = firebase.auth.currentUser; //Obtenemos el usuario logeado
@@ -462,8 +518,11 @@ class AdminUI {
         }
     }
 
+    /**
+     * Obtiene todos los items del inventario desde Firestore.
+     * @returns {Promise<Array<Object>>} Un array de objetos que representan los insumos.
+     */
     static async getAllInventoryItems() {
-        //Obtener el inventario sin los snapshot para el PDF
         try {
             const q = firebase.query(firebase.collection(firebase.db, 'inventory'));
             const querySnapshot = await firebase.getDocs(q);
