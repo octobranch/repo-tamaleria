@@ -51,4 +51,40 @@
         </div>
     </footer>
 </body>
+        <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+        import { getFirestore, doc, getDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+
+        // TODO: Reemplaza con tus credenciales de Firebase (las mismas que usas en el admin panel)
+       const firebaseConfig = {
+  apiKey: "AIzaSyC8yt-0Ha8igI_vEXhybu0wNs5th-mnWK0",
+  authDomain: "la-tamaleria-cancun-47590.firebaseapp.com",
+  projectId: "la-tamaleria-cancun-47590",
+  storageBucket: "la-tamaleria-cancun-47590.firebasestorage.app",
+  messagingSenderId: "130225049824",
+  appId: "1:130225049824:web:5d361078bcf42e7c20c085"
+};
+
+        // Inicializa Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function updateMetrics() {
+            try {
+                const metricsDocRef = doc(db, 'website_metrics', 'metrics'); // ID del documento: "metrics"
+                //Aumentamos la vista de la pagina y la visita
+                await updateDoc(metricsDocRef, {
+                    visits: increment(1),
+                    page_views: increment(1)
+                });
+
+                console.log('Métricas actualizadas correctamente.');
+            } catch (error) {
+                console.error('Error al actualizar las métricas:', error);
+            }
+        }
+
+        updateMetrics(); // Llama a la función para actualizar las métricas
+
+    </script>
 </html>
