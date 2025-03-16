@@ -342,3 +342,14 @@ label {
         padding: 1.5rem;
     }
 }
+
+/* Estilos específicos para el botón Exportar a PDF */
+#exportPdfBtn {
+    background-color: var(--success-color); /* Verde para indicar una acción de exportación */
+    color: var(--text-color-light);
+    transition: background-color 0.2s ease-in-out;
+}
+
+#exportPdfBtn:hover {
+    background-color: #218838; /* Verde ligeramente más oscuro al pasar el mouse */
+}
