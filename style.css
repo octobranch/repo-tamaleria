@@ -592,7 +592,6 @@ footer {
     background-color: transparent;
     color: var(--gris);
 }
-
 /* Estilo específico para el botón "Admin Panel" */
 #menu-items li a[href="admin/admin.html"] {
     background-color: var(--amarillo); /* Color de fondo amarillo */
@@ -602,26 +601,23 @@ footer {
     text-decoration: none; /* Eliminar subrayado */
     font-weight: 600; /* Grosor de la fuente */
     transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Transición suave */
-    box-shadow: 0 2px 4px var(--sombra); /* Sombra sutil */
-    border: 2px solid var(--negro); /* Borde negro */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* Sombra sutil */
 }
 
 #menu-items li a[href="admin/admin.html"]:hover {
     background-color: var(--negro); /* Color de fondo negro al pasar el mouse */
     color: var(--amarillo); /* Color de texto amarillo al pasar el mouse */
     transform: translateY(-2px); /* Ligeramente elevado al pasar el mouse */
-    box-shadow: 0 4px 6px var(--sombra); /* Sombra más pronunciada al pasar el mouse */
 }
 
-/* Estilos para el menú en versión móvil */
 @media (max-width: 768px) {
     nav.active ul li a[href="admin/admin.html"] {
-        color: var(--negro); /* Texto negro en el menú desplegado */
         background-color: var(--amarillo); /* Fondo amarillo en el menú desplegado */
+        color: var(--negro); /* Texto negro en el menú desplegado */
     }
 
     nav.active ul li a[href="admin/admin.html"]:hover {
-        color: var(--amarillo); /* Texto amarillo al hacer hover en el menú desplegado */
         background-color: var(--negro); /* Fondo negro al hacer hover en el menú desplegado */
+        color: var(--amarillo); /* Texto amarillo al hacer hover en el menú desplegado */
     }
 }
