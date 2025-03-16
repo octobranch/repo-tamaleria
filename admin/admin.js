@@ -8,9 +8,25 @@ class AdminUI {
         // Autenticación
         document.getElementById('loginBtn').addEventListener('click', this.handleLogin);
         document.getElementById('logoutBtn').addEventListener('click', this.handleLogout);
+
+        // Dashboard
+        document.getElementById('profileBtn').addEventListener('click', this.showPasswordModal);
+
+        //Inventario
         document.getElementById('addItemBtn').addEventListener('click', () => this.showModal());
         document.getElementById('itemForm').addEventListener('submit', this.saveItem);
         document.getElementById('searchInput').addEventListener('input', this.searchItems);
+
+        // Modales
+        document.getElementById('passwordForm').addEventListener('submit', this.changePassword);
+
+        //Sidebar
+        document.querySelectorAll('.admin-sidebar nav ul li').forEach(item => {
+            item.addEventListener('click', this.handleSidebarClick);
+        });
+
+        //Reporte PDF
+         document.getElementById('exportPdfBtn').addEventListener('click', this.exportInventoryToPdf);
     }
 
     static async checkAuthState() {
@@ -25,12 +41,16 @@ class AdminUI {
             if (user) {
                 const isAdmin = await this.verifyAdminRole(user.uid);
                 if (isAdmin) {
-                    this.showInventory();
+                    this.showDashboard();
                     this.loadInventory();
+                    this.updateUserRoleDisplay("Administrador"); //Actualizar el mensaje del rol de usuario
                 } else {
                     this.showAuthError('No tienes permisos de administrador');
-                    await firebase.signOut(firebase.auth); // Usa firebase.auth aquí
+                    this.updateUserRoleDisplay("Usuario sin permisos");
+                    await firebase.auth.signOut();
                 }
+            } else {
+                this.showAuth(); // Mostrar el formulario de autenticación si no hay usuario autenticado
             }
         } catch (error) {
             console.error('Error verifying auth:', error);
@@ -47,7 +67,7 @@ class AdminUI {
         const password = document.getElementById('password').value;
 
         try {
-            await firebase.signInWithEmailAndPassword(firebase.auth, email, password); // Usa firebase.auth aquí
+            await firebase.signInWithEmailAndPassword(firebase.auth, email, password);
         } catch (error) {
             this.showAuthError(this.getErrorMessage(error.code));
         }
@@ -55,8 +75,8 @@ class AdminUI {
 
     static async handleLogout() {
         try {
-            await firebase.signOut(firebase.auth); // Usa firebase.auth aquí
-            window.location.reload();
+            await firebase.auth.signOut();
+            this.showAuth();
         } catch (error) {
             console.error('Logout error:', error);
         }
@@ -162,7 +182,7 @@ class AdminUI {
             category: itemCategory,
             location: itemLocation,
             notes: itemNotes,
-            lastUpdate: firebase.firestore.FieldValue.serverTimestamp()
+            lastUpdate: firebase.Timestamp.now()
         };
 
         try {
@@ -243,7 +263,6 @@ class AdminUI {
       // **TODO:** Implementar la lógica de búsqueda.
     }
 
-
     static showLoading() {
         document.getElementById('loadingIndicator').style.display = 'flex';
     }
@@ -280,12 +299,84 @@ class AdminUI {
                 return 'Error de autenticación.';
         }
     }
-
-    static showInventory() {
-        document.getElementById('authContainer').style.display = 'none';
-        document.getElementById('inventoryContainer').style.display = 'block';
+    static showAuth() {
+        document.getElementById('dashboardContainer').style.display = 'none';
+        document.getElementById('authContainer').style.display = 'flex';
     }
-}
 
-// Inicialización
-document.addEventListener('DOMContentLoaded', () => AdminUI.init());
+    static showDashboard() {
+        document.getElementById('authContainer').style.display = 'none';
+        document.getElementById('dashboardContainer').style.display = 'flex';
+
+         // Mostrar la sección de inventario por defecto
+        this.showSection('inventory');
+    }
+
+    static showPasswordModal() {
+        const modal = document.getElementById('passwordModal');
+        modal.style.display = 'flex';
+    }
+
+    static closePasswordModal() {
+        const modal = document.getElementById('passwordModal');
+        modal.style.display = 'none';
+    }
+
+    static async changePassword(event) {
+        event.preventDefault();
+
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (newPassword !== confirmPassword) {
+            AdminUI.showError('Las contraseñas no coinciden.');
+            return;
+        }
+
+        if (newPassword.length < 6) {
+            AdminUI.showError('La contraseña debe tener al menos 6 caracteres.');
+            return;
+        }
+
+        try {
+            const user = firebase.auth.currentUser; //Obtenemos el usuario logeado
+
+            await user.updatePassword(newPassword); //Funcion de firebase para cambiar la contraseña
+            AdminUI.showSuccess('Contraseña actualizada correctamente.');
+            AdminUI.closePasswordModal();
+        } catch (error) {
+            console.error('Error al cambiar la contraseña:', error);
+            AdminUI.showError('Error al cambiar la contraseña.');
+        }
+    }
+
+     static handleSidebarClick(event) {
+        const section = event.target.dataset.section;
+        AdminUI.showSection(section);
+    }
+
+     static showSection(sectionId) {
+        // Ocultar todas las secciones
+        document.querySelectorAll('.dashboard-section').forEach(section => {
+            section.style.display = 'none';
+        });
+
+        // Mostrar la sección seleccionada
+        document.getElementById(sectionId + 'Section').style.display = 'block';
+    }
+
+    static updateUserRoleDisplay(role) {
+        document.getElementById('userRole').textContent = `Rol: ${role}`;
+    }
+
+    static async exportInventoryToPdf() {
+    try {
+        const inventory = await AdminUI.getAllInventoryItems(); // Obtener todos los items del inventario
+
+        if (!inventory || inventory.length === 0) {
+            AdminUI.showError("No hay datos de inventario para exportar.");
+            return;
+        }
+
+        // Configuración del documento PDF
+        const doc = new jspdf.J
