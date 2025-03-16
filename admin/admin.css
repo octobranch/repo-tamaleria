@@ -1,19 +1,18 @@
-/* admin.css */
 :root {
     --amarillo: #FFE63E;
     --negro: #000000;
     --gris: #D9D9D9;
-    --primary-color: var(--negro);          /* Negro como color principal (barra lateral, encabezados) */
-    --secondary-color: var(--amarillo);     /* Amarillo como color secundario (acentos, botones) */
-    --accent-color: var(--gris);           /* Gris para elementos sutiles (bordes, fondos suaves) */
-    --text-color: var(--negro);            /* Texto general en negro */
-    --text-color-light: #fff;              /* Texto blanco para elementos oscuros */
-    --border-color: var(--gris);           /* Bordes grises */
-    --shadow-color: rgba(0, 0, 0, 0.15);   /* Sombra sutil */
-    --background-color: #f5f5f5;           /* Fondo general gris claro */
-    --surface-color: #fff;                /* Superficies blancas (contenedores, modales) */
-    --danger-color: #e74c3c;              /* Rojo, mantenido para errores/alertas */
-    --success-color: #27ae60;             /* Verde, mantenido para éxito */
+    --primary-color: var(--negro);
+    --secondary-color: var(--amarillo);
+    --accent-color: var(--gris);
+    --text-color: var(--negro);
+    --text-color-light: #fff;
+    --border-color: var(--gris);
+    --shadow-color: rgba(0, 0, 0, 0.15);
+    --background-color: #f5f5f5;
+    --surface-color: #fff;
+    --danger-color: #e74c3c;
+    --success-color: #27ae60;
 }
 
 body {
@@ -29,7 +28,6 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    /* Degradado sutil, Negro a Gris */
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
 }
 
@@ -47,6 +45,71 @@ body {
     transform: translateY(-3px);
 }
 
+/* Dashboard */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.admin-header {
+    background: var(--primary-color);
+    color: var(--text-color-light);
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px var(--shadow-color);
+}
+
+.header-title h1 {
+    margin: 0;
+    font-size: 1.75rem;
+}
+
+.header-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.admin-main {
+    display: flex;
+    flex-grow: 1;
+}
+
+.admin-sidebar {
+    background: var(--surface-color);
+    width: 250px;
+    padding: 1.5rem;
+    box-shadow: 2px 0 6px var(--shadow-color);
+}
+
+.admin-sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.admin-sidebar nav ul li {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.admin-sidebar nav ul li:hover {
+    background-color: var(--accent-color);
+}
+
+.content-area {
+    flex-grow: 1;
+    padding: 1.5rem;
+}
+
+.dashboard-section {
+    display: none; /* Ocultar todas las secciones por defecto */
+}
+
 /* Tabla de inventario */
 .inventory-table {
     width: 100%;
@@ -55,20 +118,19 @@ body {
     background: var(--surface-color);
     box-shadow: 0 4px 12px var(--shadow-color);
     border-radius: 12px;
-    overflow-x: auto; /* Permite el scroll horizontal si la tabla es muy ancha */
+    overflow: hidden;
 }
 
 .inventory-table th,
 .inventory-table td {
-    padding: 0.75rem; /* Reducido para dar más espacio */
+    padding: 1.25rem;
     text-align: left;
     border-bottom: 1px solid var(--border-color);
-    white-space: nowrap; /* Evita que el texto se envuelva */
 }
 
 .inventory-table th {
-    background: var(--primary-color);        /* Encabezados en negro */
-    color: var(--text-color-light);       /* Texto blanco en los encabezados */
+    background: var(--primary-color);
+    color: var(--text-color-light);
     cursor: pointer;
     font-weight: 500;
     text-transform: uppercase;
@@ -141,42 +203,54 @@ button:active, .button:active {
     box-shadow: 0 1px 3px rgba(0,0,0,0.15);
 }
 
-.primary-button {
-    background-color: var(--primary-color); /* Negro */
-    color: var(--text-color-light);          /* Texto blanco */
+.primary-btn {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
 }
 
-.primary-button:hover {
-    background-color: #333;                /* Negro ligeramente más claro */
+.primary-btn:hover {
+    background-color: #333;
 }
 
-.secondary-button {
-    background-color: var(--secondary-color); /* Amarillo */
-    color: var(--text-color);                   /* Texto negro */
+.secondary-btn {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
 }
 
-.secondary-button:hover {
-    background-color: #ffda00;              /* Amarillo ligeramente más oscuro */
+.secondary-btn:hover {
+    background-color: #ffda00;
 }
 
-.danger-button {
+.danger-btn {
     background-color: var(--danger-color);
     color: var(--text-color-light);
 }
 
-.success-button {
+.success-btn {
     background-color: var(--success-color);
     color: var(--text-color-light);
+}
+
+.icon-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.icon-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Formulario */
 input[type="text"],
 input[type="email"],
 input[type="password"],
+input[type="date"],
 textarea,
-select,
-input[type="number"],
-input[type="date"] {
+select {
     width: 100%;
     padding: 0.75rem;
     margin-bottom: 1rem;
@@ -190,13 +264,12 @@ input[type="date"] {
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
+input[type="date"]:focus,
 textarea:focus,
-select:focus,
-input[type="number"]:focus,
-input[type="date"]:focus {
+select:focus {
     outline: none;
-    border-color: var(--secondary-color); /* Borde amarillo al enfocar */
-    box-shadow: 0 0 4px var(--secondary-color); /* Sombra amarilla al enfocar */
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 4px var(--secondary-color);
 }
 
 label {
@@ -205,8 +278,53 @@ label {
     font-weight: 500;
 }
 
+/* Loading Indicator */
+.loading-indicator {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+    background-color: var(--surface-color);
+    border-radius: 12px;
+}
+
+.spinner {
+    border: 5px solid var(--accent-color);
+    border-top: 5px solid var(--primary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Messages */
+.auth-message {
+    display: none;
+    padding: 1rem;
+    background-color: var(--danger-color);
+    color: var(--text-color-light);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
 /* Adaptación Responsiva */
 @media (max-width: 768px) {
+    .admin-main {
+        flex-direction: column;
+    }
+
+    .admin-sidebar {
+        width: 100%;
+        margin-bottom: 1.5rem;
+    }
+
     .inventory-table {
         overflow-x: auto;
     }
