@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -31,6 +31,7 @@
             updatePassword, onAuthStateChanged
         };
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <div class="admin-container">
@@ -96,6 +97,7 @@
                                 <input type="text" id="searchInput" placeholder="Buscar insumo...">
                             </div>
                             <button id="addItemBtn" class="primary-btn">➕ Nuevo Insumo</button>
+                            <button id="exportPdfBtn" class="secondary-btn">Exportar a PDF</button>
                         </div>
 
                         <div class="inventory-table-container">
