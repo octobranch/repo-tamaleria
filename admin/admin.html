@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administración - Restaurante</title>
     <link rel="stylesheet" href="admin-style.css">
-    <link href="
-    https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
-    " rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
 
@@ -37,14 +36,13 @@
                     <span class="material-symbols-outlined">insights</span>
                     <h3>Métricas</h3>
                 </a>
-                <a href="#">
-                    <span class="material-symbols-outlined">mail_outline</span>
-                    <h3>Mensajes</h3>
-                    <span class="message-count">26</span>
+                <a href="#" id="admins-link">
+                    <span class="material-symbols-outlined">admin_panel_settings</span>
+                    <h3>Admins</h3>
                 </a>
-                <a href="#">
-                    <span class="material-symbols-outlined">settings</span>
-                    <h3>Configuración</h3>
+                <a href="#" id="profile-link">
+                    <span class="material-symbols-outlined">person</span>
+                    <h3>Perfil</h3>
                 </a>
                 <a href="#" id="logout-btn">
                     <span class="material-symbols-outlined">logout</span>
@@ -67,14 +65,14 @@
                     <div class="middle">
                         <div class="left">
                             <h3>Ventas Totales</h3>
-                            <h1>$25,024</h1>
+                            <h1 id="total-sales">$0</h1>
                         </div>
                         <div class="progress">
                             <svg>
                                 <circle cx="38" cy="38" r="36"></circle>
                             </svg>
                             <div class="number">
-                                <p>81%</p>
+                                <p id="sales-percentage">0%</p>
                             </div>
                         </div>
                     </div>
@@ -86,14 +84,14 @@
                     <div class="middle">
                         <div class="left">
                             <h3>Gastos Totales</h3>
-                            <h1>$14,160</h1>
+                            <h1 id="total-expenses">$0</h1>
                         </div>
                         <div class="progress">
                             <svg>
                                 <circle cx="38" cy="38" r="36"></circle>
                             </svg>
                             <div class="number">
-                                <p>62%</p>
+                                <p id="expenses-percentage">0%</p>
                             </div>
                         </div>
                     </div>
@@ -105,14 +103,14 @@
                     <div class="middle">
                         <div class="left">
                             <h3>Ingresos Totales</h3>
-                            <h1>$10,864</h1>
+                            <h1 id="total-income">$0</h1>
                         </div>
                         <div class="progress">
                             <svg>
                                 <circle cx="38" cy="38" r="36"></circle>
                             </svg>
                             <div class="number">
-                                <p>44%</p>
+                                <p id="income-percentage">0%</p>
                             </div>
                         </div>
                     </div>
@@ -248,12 +246,13 @@
         <!-- End of Right -->
     </div>
 
-    <!-- The Modal -->
+    <!-- Modales -->
     <div id="inventoryModal" class="modal">
         <div class="modal-content">
             <span class="close-button">×</span>
             <h2>Gestión de Inventario</h2>
             <button id="add-item-button">Añadir Insumo</button>
+            <button id="export-inventory-button">Exportar a PDF</button>
             <div id="inventory-list">
                 <!-- Aquí se mostrará la lista de inventario -->
             </div>
@@ -310,6 +309,86 @@
         </div>
     </div>
 
+    <div id="adminsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <h2>Gestión de Administradores</h2>
+            <button id="add-admin-button">Añadir Administrador</button>
+            <div id="admins-list">
+                <!-- Aquí se mostrará la lista de administradores -->
+            </div>
+        </div>
+    </div>
+
+    <div id="addAdminModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="close-add-admin-modal">×</span>
+            <h2>Añadir Nuevo Administrador</h2>
+            <form id="add-admin-form">
+                <label for="name">Nombre:</label>
+                <input type="text" id="admin-name" name="name" required><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="admin-email" name="email" required><br>
+
+                <label for="password">Contraseña:</label>
+                <input type="password" id="admin-password" name="password" required><br>
+
+                <label for="role">Rol:</label>
+                <select id="admin-role" name="role">
+                    <option value="Administrador">Administrador</option>
+                    <option value="Gerente">Gerente</option>
+                    <option value="CEO">CEO</option>
+                </select><br>
+
+                <button type="submit">Guardar Administrador</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <h2>Perfil</h2>
+            <div id="profile-data">
+                <p>Nombre: <span id="profile-name"></span></p>
+                <p>Email: <span id="profile-email"></span></p>
+                <p>Rol: <span id="profile-role"></span></p>
+                <button id="change-password-button">Cambiar Contraseña</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="changePasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <h2>Cambiar Contraseña</h2>
+            <form id="change-password-form">
+                <label for="new-password">Nueva Contraseña:</label>
+                <input type="password" id="new-password" name="new-password" required><br>
+
+                <label for="confirm-password">Confirmar Contraseña:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required><br>
+
+                <button type="submit">Cambiar Contraseña</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2>Iniciar Sesión</h2>
+            <form id="login-form">
+                <label for="email">Email:</label>
+                <input type="email" id="login-email" name="email" required><br>
+
+                <label for="password">Contraseña:</label>
+                <input type="password" id="login-password" name="password" required><br>
+
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
 
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -318,6 +397,5 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Tu Script Personalizado -->
     <script src="admin-script.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </body>
 </html>
