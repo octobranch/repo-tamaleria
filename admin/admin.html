@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Restaurante</title>
+    <link rel="stylesheet" href="admin-style.css">
+    <link href="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css
+    " rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="https://scontent.fntr6-1.fna.fbcdn.net/v/t1.15752-9/424093058_1482951259259959_6156383815978592836_n.png?_nc_cat=104&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=rP0J01wT84MAX_D_Y0r&_nc_ht=scontent.fntr6-1.fna&oh=03_AdR9_nBv8N3K7I7P7rQ5d6g050eE3wYQ-iH-7z_3sFqMlw&oe=6603A598" alt="Logo">
+                    <h2>Restaurante <span class="danger">TOP</span></h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-symbols-outlined">close</span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <a href="#" class="active">
+                    <span class="material-symbols-outlined">grid_view</span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="#" id="inventory-link">
+                    <span class="material-symbols-outlined">inventory_2</span>
+                    <h3>Inventario</h3>
+                </a>
+                <a href="#" id="metrics-link">
+                    <span class="material-symbols-outlined">insights</span>
+                    <h3>Métricas</h3>
+                </a>
+                <a href="#">
+                    <span class="material-symbols-outlined">mail_outline</span>
+                    <h3>Mensajes</h3>
+                    <span class="message-count">26</span>
+                </a>
+                <a href="#">
+                    <span class="material-symbols-outlined">settings</span>
+                    <h3>Configuración</h3>
+                </a>
+                <a href="#" id="logout-btn">
+                    <span class="material-symbols-outlined">logout</span>
+                    <h3>Cerrar Sesión</h3>
+                </a>
+            </div>
+        </aside>
+        <!-- End of Aside -->
+
+        <main>
+            <h1>Dashboard</h1>
+
+            <div class="date">
+                <input type="date">
+            </div>
+
+            <div class="insights">
+                <div class="sales">
+                    <span class="material-symbols-outlined">analytics</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Ventas Totales</h3>
+                            <h1>$25,024</h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx="38" cy="38" r="36"></circle>
+                            </svg>
+                            <div class="number">
+                                <p>81%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">Últimas 24 Horas</small>
+                </div>
+                <!-- End of Sales -->
+                <div class="expenses">
+                    <span class="material-symbols-outlined">bar_chart</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Gastos Totales</h3>
+                            <h1>$14,160</h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx="38" cy="38" r="36"></circle>
+                            </svg>
+                            <div class="number">
+                                <p>62%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">Últimas 24 Horas</small>
+                </div>
+                <!-- End of Expenses -->
+                <div class="income">
+                    <span class="material-symbols-outlined">stacked_line_chart</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Ingresos Totales</h3>
+                            <h1>$10,864</h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx="38" cy="38" r="36"></circle>
+                            </svg>
+                            <div class="number">
+                                <p>44%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">Últimas 24 Horas</small>
+                </div>
+                <!-- End of Income -->
+            </div>
+            <!-- End of Insights -->
+
+            <div class="recent-orders">
+                <h2>Ordenes Recientes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre del Producto</th>
+                            <th>Número del Producto</th>
+                            <th>Pago</th>
+                            <th>Estado</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                    </tbody>
+                </table>
+                <a href="#">Mostrar Todos</a>
+            </div>
+        </main>
+        <!-- End of Main -->
+
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-symbols-outlined active">light_mode</span>
+                    <span class="material-symbols-outlined">dark_mode</span>
+                </div>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hola, <b>Admin</b></p>
+                        <small class="text-muted">Admin</small>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="https://scontent.fntr6-1.fna.fbcdn.net/v/t1.15752-9/424093058_1482951259259959_6156383815978592836_n.png?_nc_cat=104&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=rP0J01wT84MAX_D_Y0r&_nc_ht=scontent.fntr6-1.fna&oh=03_AdR9_nBv8N3K7I7P7rQ5d6g050eE3wYQ-iH-7z_3sFqMlw&oe=6603A598" alt="Profile Photo">
+                    </div>
+                </div>
+            </div>
+            <!-- End of Top -->
+            <div class="recent-updates">
+                <h2>Actualizaciones Recientes</h2>
+                <div class="updates">
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="https://scontent.fntr6-1.fna.fbcdn.net/v/t1.15752-9/424093058_1482951259259959_6156383815978592836_n.png?_nc_cat=104&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=rP0J01wT84MAX_D_Y0r&_nc_ht=scontent.fntr6-1.fna&oh=03_AdR9_nBv8N3K7I7P7rQ5d6g050eE3wYQ-iH-7z_3sFqMlw&oe=6603A598" alt="Profile Photo">
+                        </div>
+                        <div class="message">
+                            <p><b>Mike Tyson</b> recibió su orden de comida nocturna.</p>
+                            <small class="text-muted">Hace 2 Minutos</small>
+                        </div>
+                    </div>
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="https://scontent.fntr6-1.fna.fbcdn.net/v/t1.15752-9/424093058_1482951259259959_6156383815978592836_n.png?_nc_cat=104&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=rP0J01wT84MAX_D_Y0r&_nc_ht=scontent.fntr6-1.fna&oh=03_AdR9_nBv8N3K7I7P7rQ5d6g050eE3wYQ-iH-7z_3sFqMlw&oe=6603A598" alt="Profile Photo">
+                        </div>
+                        <div class="message">
+                            <p><b>Mike Tyson</b> recibió su orden de comida nocturna.</p>
+                            <small class="text-muted">Hace 2 Minutos</small>
+                        </div>
+                    </div>
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="https://scontent.fntr6-1.fna.fbcdn.net/v/t1.15752-9/424093058_1482951259259959_6156383815978592836_n.png?_nc_cat=104&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=rP0J01wT84MAX_D_Y0r&_nc_ht=scontent.fntr6-1.fna&oh=03_AdR9_nBv8N3K7I7P7rQ5d6g050eE3wYQ-iH-7z_3sFqMlw&oe=6603A598" alt="Profile Photo">
+                        </div>
+                        <div class="message">
+                            <p><b>Mike Tyson</b> recibió su orden de comida nocturna.</p>
+                            <small class="text-muted">Hace 2 Minutos</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Recent Updates -->
+            <div class="sales-analytics">
+                <h2>Análisis de Ventas</h2>
+                <div class="item online">
+                    <div class="icon">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                    </div>
+                    <div class="right">
+                        <div class="info">
+                            <h3>Órdenes Online</h3>
+                            <small class="text-muted">Últimas 24 Horas</small>
+                        </div>
+                        <h5 class="success">+39%</h5>
+                        <h3>3849</h3>
+                    </div>
+                </div>
+                <div class="item offline">
+                    <div class="icon">
+                        <span class="material-symbols-outlined">local_mall</span>
+                    </div>
+                    <div class="right">
+                        <div class="info">
+                            <h3>Órdenes Offline</h3>
+                            <small class="text-muted">Últimas 24 Horas</small>
+                        </div>
+                        <h5 class="danger">-17%</h5>
+                        <h3>1100</h3>
+                    </div>
+                </div>
+                <div class="item customers">
+                    <div class="icon">
+                        <span class="material-symbols-outlined">person</span>
+                    </div>
+                    <div class="right">
+                        <div class="info">
+                            <h3>Nuevos Clientes</h3>
+                            <small class="text-muted">Últimas 24 Horas</small>
+                        </div>
+                        <h5 class="success">+25%</h5>
+                        <h3>849</h3>
+                    </div>
+                </div>
+                <div class="item add-product">
+                    <div>
+                        <span class="material-symbols-outlined">add</span>
+                        <h3>Añadir Producto</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of Right -->
+    </div>
+
+    <!-- The Modal -->
+    <div id="inventoryModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <h2>Gestión de Inventario</h2>
+            <button id="add-item-button">Añadir Insumo</button>
+            <div id="inventory-list">
+                <!-- Aquí se mostrará la lista de inventario -->
+            </div>
+        </div>
+    </div>
+
+    <div id="addItemModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="close-add-item-modal">×</span>
+            <h2>Añadir Nuevo Insumo</h2>
+            <form id="add-item-form">
+                <label for="name">Nombre del Insumo:</label>
+                <input type="text" id="name" name="name" required><br>
+
+                <label for="category">Categoría:</label>
+                <input type="text" id="category" name="category" required><br>
+
+                <label for="costPrice">Precio de Costo:</label>
+                <input type="number" id="costPrice" name="costPrice" step="0.01" required><br>
+
+                <label for="description">Descripción:</label>
+                <textarea id="description" name="description"></textarea><br>
+
+                <label for="expirationDate">Fecha de Expiración:</label>
+                <input type="date" id="expirationDate" name="expirationDate"><br>
+
+                <label for="location">Ubicación:</label>
+                <input type="text" id="location" name="location"><br>
+
+                <label for="quantity">Cantidad:</label>
+                <input type="number" id="quantity" name="quantity" required><br>
+
+                <label for="supplier">Proveedor:</label>
+                <input type="text" id="supplier" name="supplier"><br>
+
+                <label for="unit">Unidad:</label>
+                <input type="text" id="unit" name="unit"><br>
+
+                <label for="notes">Notas:</label>
+                <textarea id="notes" name="notes"></textarea><br>
+
+                <button type="submit">Guardar Insumo</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="metricsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <h2>Métricas del Sitio Web</h2>
+            <div id="metrics-data">
+                <!-- Aquí se mostrarán las métricas -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Tu Script Personalizado -->
+    <script src="admin-script.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</body>
+</html>
