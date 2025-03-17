@@ -8,14 +8,15 @@
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 </head>
 <body>
 
-    <div class="container">
+    <div class="container" style="display: none;">
         <aside>
             <div class="top">
                 <div class="logo">
-                    <img src="https://scontent.fntr6-1.fna.fbcdn.net/v/t1.15752-9/424093058_1482951259259959_6156383815978592836_n.png?_nc_cat=104&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=rP0J01wT84MAX_D_Y0r&_nc_ht=scontent.fntr6-1.fna&oh=03_AdR9_nBv8N3K7I7P7rQ5d6g050eE3wYQ-iH-7z_3sFqMlw&oe=6603A598" alt="Logo">
+                    <img src="img/424093058_1482951259259959_6156383815978592836_n.png" alt="Logo">
                     <h2>Restaurante <span class="danger">TOP</span></h2>
                 </div>
                 <div class="close" id="close-btn">
@@ -156,7 +157,7 @@
                         <small class="text-muted">Admin</small>
                     </div>
                     <div class="profile-photo">
-                        <img src="https://scontent.fntr6-1.fna.fbcdn.net/v/t1.15752-9/424093058_1482951259259959_6156383815978592836_n.png?_nc_cat=104&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=rP0J01wT84MAX_D_Y0r&_nc_ht=scontent.fntr6-1.fna&oh=03_AdR9_nBv8N3K7I7P7rQ5d6g050eE3wYQ-iH-7z_3sFqMlw&oe=6603A598" alt="Profile Photo">
+                        <img src="img/424093058_1482951259259959_6156383815978592836_n.png" alt="Profile Photo">
                     </div>
                 </div>
             </div>
@@ -166,7 +167,7 @@
                 <div class="updates">
                     <div class="update">
                         <div class="profile-photo">
-                            <img src="https://scontent.fntr6-1.fna.fbcdn.net/v/t1.15752-9/424093058_1482951259259959_6156383815978592836_n.png?_nc_cat=104&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=rP0J01wT84MAX_D_Y0r&_nc_ht=scontent.fntr6-1.fna&oh=03_AdR9_nBv8N3K7I7P7rQ5d6g050eE3wYQ-iH-7z_3sFqMlw&oe=6603A598" alt="Profile Photo">
+                            <img src="img/424093058_1482951259259959_6156383815978592836_n.png" alt="Profile Photo">
                         </div>
                         <div class="message">
                             <p><b>Mike Tyson</b> recibió su orden de comida nocturna.</p>
@@ -175,7 +176,7 @@
                     </div>
                     <div class="update">
                         <div class="profile-photo">
-                            <img src="https://scontent.fntr6-1.fna.fbcdn.net/v/t1.15752-9/424093058_1482951259259959_6156383815978592836_n.png?_nc_cat=104&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=rP0J01wT84MAX_D_Y0r&_nc_ht=scontent.fntr6-1.fna&oh=03_AdR9_nBv8N3K7I7P7rQ5d6g050eE3wYQ-iH-7z_3sFqMlw&oe=6603A598" alt="Profile Photo">
+                            <img src="img/424093058_1482951259259959_6156383815978592836_n.png" alt="Profile Photo">
                         </div>
                         <div class="message">
                             <p><b>Mike Tyson</b> recibió su orden de comida nocturna.</p>
@@ -184,7 +185,7 @@
                     </div>
                     <div class="update">
                         <div class="profile-photo">
-                            <img src="https://scontent.fntr6-1.fna.fbcdn.net/v/t1.15752-9/424093058_1482951259259959_6156383815978592836_n.png?_nc_cat=104&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=rP0J01wT84MAX_D_Y0r&_nc_ht=scontent.fntr6-1.fna&oh=03_AdR9_nBv8N3K7I7P7rQ5d6g050eE3wYQ-iH-7z_3sFqMlw&oe=6603A598" alt="Profile Photo">
+                            <img src="img/424093058_1482951259259959_6156383815978592836_n.png" alt="Profile Photo">
                         </div>
                         <div class="message">
                             <p><b>Mike Tyson</b> recibió su orden de comida nocturna.</p>
@@ -263,36 +264,36 @@
         <div class="modal-content">
             <span class="close-button" id="close-add-item-modal">×</span>
             <h2>Añadir Nuevo Insumo</h2>
-            <form id="add-item-form">
+            <form id="add-item-form" autocomplete="off">
                 <label for="name">Nombre del Insumo:</label>
-                <input type="text" id="name" name="name" required><br>
+                <input type="text" id="name" name="name" required autocomplete="off"><br>
 
                 <label for="category">Categoría:</label>
-                <input type="text" id="category" name="category" required><br>
+                <input type="text" id="category" name="category" required autocomplete="off"><br>
 
                 <label for="costPrice">Precio de Costo:</label>
-                <input type="number" id="costPrice" name="costPrice" step="0.01" required><br>
+                <input type="number" id="costPrice" name="costPrice" step="0.01" required autocomplete="off"><br>
 
                 <label for="description">Descripción:</label>
-                <textarea id="description" name="description"></textarea><br>
+                <textarea id="description" name="description" autocomplete="off"></textarea><br>
 
                 <label for="expirationDate">Fecha de Expiración:</label>
-                <input type="date" id="expirationDate" name="expirationDate"><br>
+                <input type="date" id="expirationDate" name="expirationDate" autocomplete="off"><br>
 
                 <label for="location">Ubicación:</label>
-                <input type="text" id="location" name="location"><br>
+                <input type="text" id="location" name="location" autocomplete="off"><br>
 
                 <label for="quantity">Cantidad:</label>
-                <input type="number" id="quantity" name="quantity" required><br>
+                <input type="number" id="quantity" name="quantity" required autocomplete="off"><br>
 
                 <label for="supplier">Proveedor:</label>
-                <input type="text" id="supplier" name="supplier"><br>
+                <input type="text" id="supplier" name="supplier" autocomplete="off"><br>
 
                 <label for="unit">Unidad:</label>
-                <input type="text" id="unit" name="unit"><br>
+                <input type="text" id="unit" name="unit" autocomplete="off"><br>
 
                 <label for="notes">Notas:</label>
-                <textarea id="notes" name="notes"></textarea><br>
+                <textarea id="notes" name="notes" autocomplete="off"></textarea><br>
 
                 <button type="submit">Guardar Insumo</button>
             </form>
@@ -324,17 +325,17 @@
         <div class="modal-content">
             <span class="close-button" id="close-add-admin-modal">×</span>
             <h2>Añadir Nuevo Administrador</h2>
-            <form id="add-admin-form">
-                <label for="name">Nombre:</label>
-                <input type="text" id="admin-name" name="name" required><br>
+            <form id="add-admin-form" autocomplete="off">
+                <label for="admin-name">Nombre:</label>
+                <input type="text" id="admin-name" name="name" required autocomplete="name"><br>
 
-                <label for="email">Email:</label>
-                <input type="email" id="admin-email" name="email" required><br>
+                <label for="admin-email">Email:</label>
+                <input type="email" id="admin-email" name="email" required autocomplete="email"><br>
 
-                <label for="password">Contraseña:</label>
-                <input type="password" id="admin-password" name="password" required><br>
+                <label for="admin-password">Contraseña:</label>
+                <input type="password" id="admin-password" name="password" required autocomplete="new-password"><br>
 
-                <label for="role">Rol:</label>
+                <label for="admin-role">Rol:</label>
                 <select id="admin-role" name="role">
                     <option value="Administrador">Administrador</option>
                     <option value="Gerente">Gerente</option>
@@ -363,12 +364,12 @@
         <div class="modal-content">
             <span class="close-button">×</span>
             <h2>Cambiar Contraseña</h2>
-            <form id="change-password-form">
+            <form id="change-password-form" autocomplete="off">
                 <label for="new-password">Nueva Contraseña:</label>
-                <input type="password" id="new-password" name="new-password" required><br>
+                <input type="password" id="new-password" name="new-password" required autocomplete="new-password"><br>
 
                 <label for="confirm-password">Confirmar Contraseña:</label>
-                <input type="password" id="confirm-password" name="confirm-password" required><br>
+                <input type="password" id="confirm-password" name="confirm-password" required autocomplete="new-password"><br>
 
                 <button type="submit">Cambiar Contraseña</button>
             </form>
@@ -378,17 +379,58 @@
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <h2>Iniciar Sesión</h2>
-            <form id="login-form">
-                <label for="email">Email:</label>
-                <input type="email" id="login-email" name="email" required><br>
+            <form id="login-form" autocomplete="off">
+                <label for="login-email">Email:</label>
+                <input type="email" id="login-email" name="email" required autocomplete="email"><br>
 
-                <label for="password">Contraseña:</label>
-                <input type="password" id="login-password" name="password" required><br>
+                <label for="login-password">Contraseña:</label>
+                <input type="password" id="login-password" name="password" required autocomplete="current-password"><br>
 
                 <button type="submit">Iniciar Sesión</button>
             </form>
         </div>
     </div>
+
+     <div id="editItemModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" id="close-edit-item-modal">×</span>
+        <h2>Editar Insumo</h2>
+        <form id="edit-item-form" autocomplete="off">
+            <label for="edit-name">Nombre del Insumo:</label>
+            <input type="text" id="edit-name" name="name" required autocomplete="off"><br>
+
+            <label for="edit-category">Categoría:</label>
+            <input type="text" id="edit-category" name="category" required autocomplete="off"><br>
+
+            <label for="edit-costPrice">Precio de Costo:</label>
+            <input type="number" id="edit-costPrice" name="costPrice" step="0.01" required autocomplete="off"><br>
+
+            <label for="edit-description">Descripción:</label>
+            <textarea id="edit-description" name="description" autocomplete="off"></textarea><br>
+
+            <label for="edit-expirationDate">Fecha de Expiración:</label>
+            <input type="date" id="edit-expirationDate" name="expirationDate" autocomplete="off"><br>
+
+            <label for="edit-location">Ubicación:</label>
+            <input type="text" id="edit-location" name="location" autocomplete="off"><br>
+
+            <label for="edit-quantity">Cantidad:</label>
+            <input type="number" id="edit-quantity" name="quantity" required autocomplete="off"><br>
+
+            <label for="edit-supplier">Proveedor:</label>
+            <input type="text" id="edit-supplier" name="supplier" autocomplete="off"><br>
+
+            <label for="edit-unit">Unidad:</label>
+            <input type="text" id="edit-unit" name="unit" autocomplete="off"><br>
+
+            <label for="edit-notes">Notas:</label>
+            <textarea id="edit-notes" name="notes" autocomplete="off"></textarea><br>
+
+            <input type="hidden" id="edit-item-id" name="itemId">
+            <button type="submit">Guardar Cambios</button>
+        </form>
+    </div>
+</div>
 
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
