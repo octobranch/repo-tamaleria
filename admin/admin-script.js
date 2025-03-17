@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js";
-import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js";
+import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, onSnapshot, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updatePassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js";
 
 // Tu configuración de Firebase
@@ -33,6 +33,7 @@ const changePasswordModal = document.getElementById('changePasswordModal');
 const addItemModal = document.getElementById('addItemModal');
 const addAdminModal = document.getElementById('addAdminModal');
 const loginModal = document.getElementById('loginModal');
+const editItemModal = document.getElementById('editItemModal');
 
 // Enlaces del menú
 const inventoryLink = document.getElementById('inventory-link');
@@ -50,12 +51,14 @@ const exportInventoryButton = document.getElementById('export-inventory-button')
 // Botones de cierre de los modales
 const closeAddItemModal = document.getElementById('close-add-item-modal');
 const closeAddAdminModal = document.getElementById('close-add-admin-modal');
+const closeEditItemModal = document.getElementById('close-edit-item-modal');
 
 // Formularios
 const addItemForm = document.getElementById('add-item-form');
 const addAdminForm = document.getElementById('add-admin-form');
 const changePasswordForm = document.getElementById('change-password-form');
 const loginForm = document.getElementById('login-form');
+const editItemForm = document.getElementById('edit-item-form');
 
 // Listas de datos
 const inventoryList = document.getElementById('inventory-list');
@@ -305,6 +308,29 @@ async function exportInventoryToPDF() {
     }
 }
 
+async function openEditItemModal(itemId) {
+    const editItemModal = document.getElementById('editItemModal');
+    openModal(editItemModal);
+
+    // Obtener los datos del insumo desde Firebase
+    const itemDoc = await getDoc(doc(db, 'inventory', itemId));
+    const itemData = itemDoc.data();
+
+    // Llenar el formulario de edición con los datos del insumo
+    document.getElementById('edit-name').value = itemData.name;
+    document.getElementById('edit-category').value = itemData.category;
+    document.getElementById('edit-costPrice').value = itemData.costPrice;
+    document.getElementById('edit-description').value = itemData.description;
+    document.getElementById('edit-expirationDate').value = itemData.expirationDate;
+    document.getElementById('edit-location').value = itemData.location;
+    document.getElementById('edit-quantity').value = itemData.quantity;
+    document.getElementById('edit-supplier').value = itemData.supplier;
+    document.getElementById('edit-unit').value = itemData.unit;
+    document.getElementById('edit-notes').value = itemData.notes;
+
+    document.getElementById('edit-item-id').value = itemId; // Guarda el ID
+}
+
 // Eventos de los modales
 inventoryLink.addEventListener('click', () => {
     openModal(inventoryModal);
@@ -413,6 +439,41 @@ loginForm.addEventListener('submit', async (e) => {
     login(loginEmail, loginPassword);
 });
 
+editItemForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const itemId = document.getElementById('edit-item-id').value;
+    const updatedItem = {
+        name: document.getElementById('edit-name').value,
+        category: document.getElementById('edit-category').value,
+        costPrice: parseFloat(document.getElementById('edit-costPrice').value),
+        description: document.getElementById('edit-description').value,
+        expirationDate: document.getElementById('edit-expirationDate').value,
+        location: document.getElementById('edit-location').value,
+        quantity: parseInt(document.getElementById('edit-quantity').value),
+        supplier: document.getElementById('edit-supplier').value,
+        unit: document.getElementById('edit-unit').value,
+        notes: document.getElementById('edit-notes').value
+    };
+
+    try {
+        await updateDoc(doc(db, 'inventory', itemId), updatedItem);
+        closeModal(editItemModal);
+        loadInventory();
+        Swal.fire({
+            icon: 'success',
+            title: 'Éxito!',
+            text: 'Insumo actualizado correctamente.'
+        });
+    } catch (error) {
+        console.error("Error al actualizar el insumo: ", error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Hubo un problema al actualizar el insumo.'
+        });
+    }
+});
+
 // Eventos de los botones de cierre
 document.querySelectorAll('.close-button').forEach(button => {
     button.addEventListener('click', function() {
@@ -427,6 +488,10 @@ closeAddItemModal.addEventListener('click', () => {
 
 closeAddAdminModal.addEventListener('click', () => {
     closeModal(addAdminModal);
+});
+
+closeEditItemModal.addEventListener('click', () => {
+    closeModal(editItemModal);
 });
 
 // Cierre de los modales al hacer clic fuera del contenido
@@ -449,6 +514,32 @@ themeToggler.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode-variables');
     themeToggler.querySelector('span:nth-child(1)').classList.toggle('active');
     themeToggler.querySelector('span:nth-child(2)').classList.toggle('active');
+});
+
+inventoryList.addEventListener('click', async (e) => {
+    if (e.target.classList.contains('delete-item')) {
+        const idToDelete = e.target.dataset.id;
+        try {
+            await deleteDoc(doc(db, 'inventory', idToDelete));
+            loadInventory();
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito!',
+                text: 'Administrador eliminado correctamente.'
+            });
+        } catch (error) {
+            console.error("Error al eliminar el administrador: ", error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'Hubo un problema al eliminar el administrador.'
+            });
+        }
+    }
+       if (e.target.classList.contains('edit-item')) {
+        const itemId = e.target.dataset.id;
+        openEditItemModal(itemId);
+    }
 });
 
 adminsList.addEventListener('click', async (e) => {
