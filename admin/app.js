@@ -1,3 +1,7 @@
+// Importar Firebase y las funciones necesarias desde el archivo de configuración
+import { auth } from './firebaseConfig.js'; // Ajusta la ruta según donde esté tu archivo
+import { signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+
 document.getElementById("login-form").addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -5,7 +9,8 @@ document.getElementById("login-form").addEventListener("submit", function(event)
     const password = document.getElementById("password").value;
     const errorMessage = document.getElementById("error-message");
 
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    // Usar el servicio de autenticación para iniciar sesión
+    signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             window.location.href = "dashboard.html"; // Redirigir al panel
         })
