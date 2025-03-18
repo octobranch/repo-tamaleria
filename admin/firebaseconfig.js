@@ -22,5 +22,14 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const firestore = getFirestore(app);
 
+// Verificación de inicialización
+try {
+  if (app.name === '[DEFAULT]') {
+    console.log('Firebase ha sido inicializado correctamente');
+  }
+} catch (error) {
+  console.error('Error al inicializar Firebase', error);
+}
+
 // Exportar los servicios para su uso en otras partes de la aplicación
 export { auth, firestore };
