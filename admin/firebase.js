@@ -1,11 +1,11 @@
 
 const firebaseConfig = {
-    apiKey: "TU_API_KEY",
-    authDomain: "TU_AUTH_DOMAIN",
-    projectId: "TU_PROJECT_ID",
-    storageBucket: "TU_STORAGE_BUCKET",
-    messagingSenderId: "TU_MESSAGING_SENDER_ID",
-    appId: "TU_APP_ID"
+  apiKey: "AIzaSyC8yt-0Ha8igI_vEXhybu0wNs5th-mnWK0",
+  authDomain: "la-tamaleria-cancun-47590.firebaseapp.com",
+  projectId: "la-tamaleria-cancun-47590",
+  storageBucket: "la-tamaleria-cancun-47590.firebasestorage.app",
+  messagingSenderId: "130225049824",
+  appId: "1:130225049824:web:5d361078bcf42e7c20c085"
 };
 
 // Inicializar Firebase
