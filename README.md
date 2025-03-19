@@ -77,7 +77,7 @@ repo-tamaleria-main/
 1.  **Clonar el repositorio:**
 
     ```bash
-    git clone https://github.com/tu-usuario/la-tamaleria-cancun.git
+    git clone https://github.com/octobranch/repo-tamaleria.git
     ```
 
 2.  **Abrir el archivo `index.html` en un navegador web:**
