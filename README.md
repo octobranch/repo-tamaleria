@@ -32,22 +32,45 @@ El sitio web permite a los usuarios:
 
 ## Estructura de Archivos
 
-la-tamaleria-cancun/
-├── index.html
-├── blog.html
-├── style.css
-├── blog-style.css
-├── script.js
+repo-tamaleria-main/
+├── img/
+│   ├── logos/
+│   │   ├── logo-ver1.svg
+│   │   ├── logo-ver2.svg
+│   │   ├── logo-ver3.svg
+│   │   ├── logo-ver4.svg    
+│   │   ├── logo-ver5.svg
+│   │   ├── logo-ver6.svg
+│   │   └── logo-ver7.svg
+│   └── tamaleria-interior.webp
+│
+├── .gitignore             
+├── .env
+├── README.md
+├── archivo-diciembre-2023.html
+├── archivo-noviembre-2023.html
+├── archivo-octubre-2023.html
+├── archivo-septiembre-2023.html
+├── articulo1.html
+├── articulo2.html
+├── articulo3.html
+├── articulo4.html
+├── articulo5.html
+├── articulo6.html
 ├── blog-script.js
-└── img/
-    ├── logos/
-    │   ├── logo-ver1.svg
-    │   └── logo-ver2.svg
-    └── blog/
-        ├── tamal-prehispanico.webp
-        ├── receta-atole.webp
-        └── tamales-cdmx-cancun.webp
-
+├── blog-style.css
+├── blog.html
+├── categoria-eventos.html
+├── categoria-historia.html
+├── categoria-noticias.html
+├── categoria-recetas.html
+├── categoria-tradiciones.html
+├── categorias.html
+├── index.html
+├── robots.txt
+├── script.js
+├── sitemap.xml
+└── style.css
 
 ## Configuración e Instalación
 
@@ -74,23 +97,6 @@ Para personalizar el sitio web, puedes modificar los siguientes archivos:
 
 Este proyecto no utiliza variables de entorno directamente en el código del lado del cliente (JavaScript). Sin embargo, si decides agregar funcionalidad del lado del servidor, es importante proteger tus claves API y otra información sensible utilizando variables de entorno.
 
-## Despliegue
-
-Este sitio web se puede desplegar fácilmente en plataformas como Vercel o Netlify:
-
-1.  **Vercel:**
-
-    *   Crea una cuenta en [Vercel](https://vercel.com/).
-    *   Importa tu repositorio de GitHub.
-    *   Configura las variables de entorno (si es necesario).
-    *   Vercel se encargará del resto.
-
-2.  **Netlify:**
-
-    *   Crea una cuenta en [Netlify](https://www.netlify.com/).
-    *   Importa tu repositorio de GitHub.
-    *   Configura las variables de entorno (si es necesario).
-    *   Netlify se encargará del resto.
 
 ## Créditos
 
