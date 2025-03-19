@@ -5,22 +5,23 @@
     --amarillo: #FFE63E;
     --negro: #000000;
     --gris: #D9D9D9;
-    --fondo: #1E1E1E; /* Fondo oscuro para coherencia */
-    --sombra: rgba(0, 0, 0, 0.25); /* Sombra más pronunciada */
+    --fondo: #1E1E1E;
+    --sombra: rgba(0, 0, 0, 0.25);
     --borde: rgba(0, 0, 0, 0.1);
     --transicion-rapida: all 0.2s ease-in-out;
 }
 
 /* Estilos generales */
 body {
-    font-family: 'Poppins', sans-serif; /* Mantiene la fuente original del blog */
+    font-family: 'Poppins', sans-serif;
     background-color: var(--fondo);
-    color: var(--amarillo); /* Texto principal en amarillo */
+    color: var(--amarillo);
     line-height: 1.7;
     margin: 0;
     padding: 0;
 }
 
+/* Contenedor */
 .container {
     width: 90%;
     max-width: 1200px;
@@ -28,12 +29,12 @@ body {
     padding: 30px 0;
 }
 
-/* Estilos del encabezado */
+/* Encabezado */
 header {
-    background-color: rgba(0, 0, 0, 0.8); /* Header negro semi-transparente */
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 10px 20px;
     transition: var(--transicion-rapida);
-    box-shadow: 0 4px 8px var(--sombra); /* Sombra más notoria */
+    box-shadow: 0 4px 8px var(--sombra);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -42,6 +43,7 @@ header {
     align-items: center;
 }
 
+/* Logo */
 .logo-carousel {
     height: 100px;
     width: 115px;
@@ -62,7 +64,79 @@ header {
     opacity: 1;
 }
 
-/* Estilos del pie de página */
+/* Menú hamburguesa */
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    background-color: var(--amarillo);
+    border: none;
+    border-radius: 5px;
+    transition: var(--transicion-rapida);
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--negro);
+    margin: 4px 0;
+    transition: var(--transicion-rapida);
+}
+
+/* Efecto del botón de menú activo */
+.menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Menú de navegación */
+nav {
+    position: relative;
+}
+
+/* Menú en dispositivos móviles */
+#menu-items {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    background-color: var(--negro);
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 200px;
+    border-radius: 5px;
+}
+
+#menu-items.show {
+    display: flex;
+}
+
+#menu-items li {
+    list-style: none;
+    padding: 10px;
+}
+
+#menu-items a {
+    color: var(--amarillo);
+    text-decoration: none;
+    display: block;
+    transition: color 0.3s;
+}
+
+#menu-items a:hover {
+    color: var(--gris);
+}
+
+/* Pie de página */
 footer {
     background-color: var(--negro);
     color: var(--amarillo);
@@ -71,7 +145,7 @@ footer {
     margin-top: 40px;
 }
 
-/* Estilos del contenido principal */
+/* Contenido principal */
 .blog-main {
     padding: 40px 0;
 }
@@ -82,11 +156,7 @@ footer {
     gap: 30px;
 }
 
-/* Estilos de la sección de artículos */
-.blog-articles {
-    width: 100%;
-}
-
+/* Banner del blog */
 .blog-banner {
     background-color: var(--amarillo);
     color: var(--negro);
@@ -94,32 +164,19 @@ footer {
     border-radius: 15px;
     text-align: center;
     margin-bottom: 30px;
-    animation: fadeIn 1s ease-out; /* Animación de entrada */
+    animation: fadeIn 1s ease-out;
 }
 
 .blog-banner h1 {
     font-size: 2.5em;
     margin-bottom: 15px;
     transition: transform 0.3s, color 0.3s;
-    animation: pulse 2s infinite alternate; /* Animación de pulso */
+    animation: pulse 2s infinite alternate;
 }
 
-.blog-banner p {
-    font-size: 1.2em;
-}
-
-/* Estilos del artículo completo */
-.articulo-completo {
-    background-color: rgba(255, 230, 62, 0.05); /* Fondo amarillo sutil */
-    border-radius: 15px;
-    box-shadow: 0 4px 8px var(--sombra);
-    padding: 20px;
-    margin-bottom: 30px;
-}
-
-/* Estilos del artículo */
+/* Artículos */
 .articulo {
-    background-color: rgba(255, 230, 62, 0.05); /* Fondo amarillo sutil */
+    background-color: rgba(255, 230, 62, 0.05);
     border-radius: 15px;
     box-shadow: 0 4px 8px var(--sombra);
     margin-bottom: 30px;
@@ -128,7 +185,7 @@ footer {
 
 .articulo:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0 10px var(--amarillo); /* Resaltado al hacer hover */
+    box-shadow: 0 0 10px var(--amarillo);
 }
 
 .articulo img {
@@ -143,12 +200,6 @@ footer {
 .articulo h3 {
     font-size: 1.5em;
     margin: 20px;
-    transition: transform 0.3s, color 0.3s;
-}
-
-.articulo h3:hover {
-    transform: scale(1.05);
-    color: var(--amarillo);
 }
 
 .articulo p {
@@ -156,6 +207,7 @@ footer {
     margin: 0 20px 20px 20px;
 }
 
+/* Botón "Leer más" */
 .leer-mas {
     display: inline-block;
     background-color: var(--amarillo);
@@ -165,18 +217,17 @@ footer {
     text-decoration: none;
     font-weight: bold;
     margin: 0 20px 25px 20px;
-    transition: background-color 0.3s, color 0.3s;
-    border: 2px solid var(--negro); /* Añade borde negro para destacar */
+    border: 2px solid var(--negro);
 }
 
 .leer-mas:hover {
     background-color: var(--negro);
     color: var(--amarillo);
     transform: translateY(-2px);
-    box-shadow: 0 0 10px var(--amarillo); /* Resaltado al hacer hover */
+    box-shadow: 0 0 10px var(--amarillo);
 }
 
-/* Estilos de la paginación */
+/* Paginación */
 .paginacion {
     text-align: center;
     margin-top: 20px;
@@ -190,272 +241,65 @@ footer {
     color: var(--amarillo);
     border-radius: 5px;
     text-decoration: none;
-    transition: background-color 0.3s, color 0.3s;
 }
 
 .paginacion a:hover {
     background-color: var(--amarillo);
     color: var(--negro);
-}
-
-.paginacion a.disabled {
-    color: var(--gris);
-    pointer-events: none; /* Desactiva los clics en el enlace */
-    text-decoration: none;
-}
-
-.paginacion a.disabled:hover {
-    background-color: transparent; /* Elimina el efecto hover */
-    color: var(--gris);
-}
-
-/* Estilos de la barra lateral */
-.blog-sidebar {
-    width: 100%;
-}
-
-.sidebar-widget {
-    background-color: rgba(255, 230, 62, 0.05); /* Fondo amarillo sutil */
-    border-radius: 15px;
-    box-shadow: 0 4px 8px var(--sombra);
-    margin-bottom: 30px;
-    padding: 20px;
-}
-
-.sidebar-widget h3 {
-    font-size: 1.3em;
-    margin-bottom: 15px;
-    border-bottom: 2px solid var(--amarillo);
-    padding-bottom: 10px;
-    color: var(--amarillo); /* Títulos en amarillo */
-}
-
-/* Estilos del widget de búsqueda */
-.busqueda {
-    display: flex;
-}
-
-.busqueda input[type="text"] {
-    padding: 10px;
-    border: 1px solid var(--borde);
-    border-radius: 5px 0 0 5px;
-    flex-grow: 1;
-    outline: none;
-    background-color: rgba(255, 230, 62, 0.1); /* Fondo amarillo sutil */
-    color: var(--gris); /* Texto en gris para contraste */
-}
-
-.busqueda button {
-    background-color: var(--amarillo);
-    color: var(--negro);
-    border: none;
-    padding: 10px 15px;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.busqueda button:hover {
-    background-color: var(--negro);
-    color: var(--amarillo);
-}
-
-/* Estilos de las listas de categorías y archivos */
-.categorias-lista,
-.archivos-lista,
-.publicaciones-recientes {
-    list-style: none;
-    padding: 0;
-}
-
-.categorias-lista li,
-.archivos-lista li {
-    margin-bottom: 8px;
-}
-
-.categorias-lista a,
-.archivos-lista a {
-    color: var(--amarillo); /* Enlaces en amarillo */
-    text-decoration: none;
-    display: block;
-    padding: 8px 12px;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.categorias-lista a:hover,
-.archivos-lista a:hover {
-    background-color: var(--negro);
-    color: var(--amarillo);
-    transform: scale(1.05);
-    box-shadow: 0 0 5px var(--amarillo); /* Resaltado al hacer hover */
-}
-
-/* Estilos de las publicaciones recientes */
-.publicaciones-recientes li {
-    margin-bottom: 15px;
-}
-
-.publicaciones-recientes a {
-    color: var(--amarillo); /* Enlaces en amarillo */
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.publicaciones-recientes a:hover {
-    transform: scale(1.05);
-    color: var(--amarillo);
-    text-shadow: 0 0 5px var(--amarillo); /* Resaltado al hacer hover */
-}
-
-.publicaciones-recientes time {
-    display: block;
-    font-size: 0.9em;
-    color: var(--gris);
-    margin-top: 5px;
 }
 
 /* Estilos responsivos */
 @media (max-width: 768px) {
     .blog-content {
         grid-template-columns: 100%;
-        gap: 20px;
     }
 
-    .blog-sidebar {
-        order: -1; /* Mueve la barra lateral arriba del contenido principal */
+    /* Menú hamburguesa en móviles */
+    .menu-toggle {
+        display: flex;
     }
 
-    .blog-articles,
-    .blog-sidebar {
-        width: 100%;
-    }
-
-    /* Estilos para el menú hamburguesa en pantallas pequeñas */
-    header {
-        flex-direction: column; /* Apila el logo y la navegación */
-        align-items: flex-start; /* Alinea a la izquierda */
-    }
-
-    .logo-carousel {
-        margin: 10px 0; /* Reduce el margen */
-    }
-
-    /* Asegúrate de que la navegación no esté oculta inicialmente */
     nav {
-        width: 100%;
-        display: none; /* Oculta la navegación por defecto */
+        display: none;
     }
 
-    /* Muestra la navegación cuando está activa */
     nav.active {
         display: block;
     }
-
-    /* Estilos para los items del menú */
-    #menu-items {
-        flex-direction: column; /* Apila los elementos del menú */
-        align-items: flex-start; /* Alinea a la izquierda */
-        width: 100%;
-        display: none; /* Oculta por defecto */
-    }
-
-    /* Muestra los items del menú cuando la clase 'show' está presente */
-    #menu-items.show {
-        display: block;
-    }
-
-    #menu-items li {
-        margin-bottom: 10px; /* Espacio entre elementos del menú */
-    }
-
-    /* Estilos para el botón del menú hamburguesa */
-    .menu-toggle {
-        display: flex; /* Muestra el botón del menú hamburguesa */
-        cursor: pointer;
-        padding: 10px;
-        background-color: var(--amarillo);
-        color: var(--negro);
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
 }
 
-/* Estilos para "Mostrar más" */
+/* Botón "Mostrar más" */
 .mostrar-mas-btn {
-    display: inline-block;
+    display: block;
     background-color: var(--amarillo);
     color: var(--negro);
     padding: 12px 25px;
     border-radius: 30px;
-    text-decoration: none;
     font-weight: bold;
-    margin: 20px auto; /* Centrar el botón */
-    transition: background-color 0.3s, color 0.3s;
-    cursor: pointer;
-    border: 2px solid var(--negro); /* Añade borde negro para destacar */
+    margin: 20px auto;
+    border: 2px solid var(--negro);
     box-shadow: 0 4px 6px var(--sombra);
-    display: block;
     text-align: center;
+    cursor: pointer;
 }
 
 .mostrar-mas-btn:hover {
     background-color: var(--negro);
     color: var(--amarillo);
-    transform: translateY(-2px);
-    box-shadow: 0 0 10px var(--amarillo); /* Resaltado al hacer hover */
 }
 
-/* Estilos para ocultar artículos */
+/* Ocultar artículos */
 .articulo.oculto {
     display: none;
 }
 
-/* Estilos específicos para la paginación (Asegúrate de que estén al final) */
-.paginacion a {
-    display: inline-block;
-    padding: 10px 15px;
-    margin: 0 5px;
-    background-color: var(--fondo);
-    color: var(--amarillo);
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.paginacion a:hover {
-    background-color: var(--amarillo);
-    color: var(--negro);
-}
-
-.paginacion a.disabled {
-    color: var(--gris);
-    pointer-events: none; /* Desactiva los clics en el enlace */
-    text-decoration: none;
-}
-
-.paginacion a.disabled:hover {
-    background-color: transparent; /* Elimina el efecto hover */
-    color: var(--gris);
-}
-
-/* Animaciones Keyframes (Asegúrate de que estén definidas) */
+/* Animaciones */
 @keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(1.05);
-    }
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
