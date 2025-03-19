@@ -64,7 +64,7 @@ header {
     opacity: 1;
 }
 
-/* Menú hamburguesa */
+/* 📌 MENÚ HAMBURGUESA */
 .menu-toggle {
     display: flex;
     flex-direction: column;
@@ -86,7 +86,7 @@ header {
     transition: var(--transicion-rapida);
 }
 
-/* Efecto del botón de menú activo */
+/* Efecto del botón activo */
 .menu-toggle.active .bar:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
 }
@@ -97,12 +97,7 @@ header {
     transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Menú de navegación */
-nav {
-    position: relative;
-}
-
-/* Menú en dispositivos móviles */
+/* 📌 MENÚ PRINCIPAL */
 #menu-items {
     display: none;
     flex-direction: column;
@@ -136,16 +131,7 @@ nav {
     color: var(--gris);
 }
 
-/* Pie de página */
-footer {
-    background-color: var(--negro);
-    color: var(--amarillo);
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-}
-
-/* Contenido principal */
+/* 📌 CONTENIDO DEL BLOG */
 .blog-main {
     padding: 40px 0;
 }
@@ -156,7 +142,7 @@ footer {
     gap: 30px;
 }
 
-/* Banner del blog */
+/* 📌 BANNER DEL BLOG */
 .blog-banner {
     background-color: var(--amarillo);
     color: var(--negro);
@@ -174,7 +160,7 @@ footer {
     animation: pulse 2s infinite alternate;
 }
 
-/* Artículos */
+/* 📌 ARTÍCULOS DEL BLOG */
 .articulo {
     background-color: rgba(255, 230, 62, 0.05);
     border-radius: 15px;
@@ -207,7 +193,7 @@ footer {
     margin: 0 20px 20px 20px;
 }
 
-/* Botón "Leer más" */
+/* 📌 BOTÓN "LEER MÁS" */
 .leer-mas {
     display: inline-block;
     background-color: var(--amarillo);
@@ -227,7 +213,7 @@ footer {
     box-shadow: 0 0 10px var(--amarillo);
 }
 
-/* Paginación */
+/* 📌 PAGINACIÓN */
 .paginacion {
     text-align: center;
     margin-top: 20px;
@@ -248,7 +234,7 @@ footer {
     color: var(--negro);
 }
 
-/* Estilos responsivos */
+/* 📌 ESTILOS RESPONSIVOS */
 @media (max-width: 768px) {
     .blog-content {
         grid-template-columns: 100%;
@@ -268,7 +254,7 @@ footer {
     }
 }
 
-/* Botón "Mostrar más" */
+/* 📌 BOTÓN "MOSTRAR MÁS" */
 .mostrar-mas-btn {
     display: block;
     background-color: var(--amarillo);
@@ -288,12 +274,7 @@ footer {
     color: var(--amarillo);
 }
 
-/* Ocultar artículos */
-.articulo.oculto {
-    display: none;
-}
-
-/* Animaciones */
+/* 📌 ANIMACIONES */
 @keyframes pulse {
     0% { transform: scale(1); }
     100% { transform: scale(1.05); }
