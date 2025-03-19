@@ -1,15 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Menu Hamburguesa
+    // Menú Hamburguesa
     const menuToggle = document.getElementById('menu-toggle');
     const nav = document.querySelector('nav');
     const menuItems = document.getElementById('menu-items');
 
     if (menuToggle && nav && menuItems) {
         menuToggle.addEventListener('click', (event) => {
-            event.preventDefault(); // Evita comportamientos inesperados
+            event.preventDefault();
+            
+            // Alternar clases
             menuToggle.classList.toggle('active');
             nav.classList.toggle('active');
             menuItems.classList.toggle('show');
+
+            // Asegurar que el menú cambia su visibilidad
+            if (menuItems.classList.contains('show')) {
+                menuItems.style.display = 'flex';
+            } else {
+                menuItems.style.display = 'none';
+            }
         });
 
         // Cerrar menú al hacer clic en un enlace
@@ -18,13 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 nav.classList.remove('active');
                 menuToggle.classList.remove('active');
                 menuItems.classList.remove('show');
+                menuItems.style.display = 'none';
             }
         });
     } else {
         console.error('Uno o más elementos del menú hamburguesa no se encontraron.');
     }
 
-    // Funcionalidad de búsqueda (sin cambios, asumiendo que funciona bien)
+    // Funcionalidad de búsqueda
     const searchInput = document.querySelector('.busqueda input[type="text"]');
     const articulos = document.querySelectorAll('.articulo');
 
@@ -43,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Mostrar más artículos (sin cambios, asumiendo que funciona bien)
+    // Mostrar más artículos
     const articulosOcultos = Array.from(document.querySelectorAll('.articulo')).slice(3); // Obtener artículos después del tercero
 
     articulosOcultos.forEach(articulo => {
