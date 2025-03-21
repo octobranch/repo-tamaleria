@@ -2,9 +2,12 @@
 :root {
     --amarillo: #FFE63E;
     --negro: #000000;
+    --gris: #D9D9D9;
     --gris-claro: #D9D9D9;
-    --fondo: #1E1E1E;
-    --sombra: rgba(0, 0, 0, 0.25);
+    --fondo: #1E1E1E; /* Fondo oscuro que complementa amarillo y negro */
+    --borde: rgba(0, 0, 0, 0.1);
+    --sombra: rgba(0, 0, 0, 0.25); /* Sombra más pronunciada */
+    --transicion-rapida: all 0.2s ease-in-out;
     --transicion: all 0.3s ease-in-out;
     --fuente-principal: 'Pacific Regular', sans-serif;
 }
@@ -16,21 +19,40 @@
     box-sizing: border-box;
 }
 
+/* General */
 body {
     font-family: var(--fuente-principal);
     background-color: var(--fondo);
-    color: var(--amarillo);
-    line-height: 1.6;
+    color: var(--amarillo); /* Texto principal en amarillo para contraste */
+    line-height: 1.7;
+    transition: var(--transicion-rapida);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    font-size: 16px;
 }
 
 .container {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 30px 0;
 }
 
+/* Accesibilidad */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Enlaces */
 a {
     color: inherit;
     text-decoration: none;
@@ -41,6 +63,7 @@ a:hover {
     color: var(--gris-claro);
 }
 
+/* Botones */
 button {
     background-color: var(--amarillo);
     color: var(--negro);
@@ -60,15 +83,35 @@ button:hover {
 
 /* Header */
 header {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.8); /* Header negro semi-transparente */
     padding: 10px 20px;
-    box-shadow: 0 4px 8px var(--sombra);
+    transition: var(--transicion-rapida);
+    box-shadow: 0 4px 8px var(--sombra); /* Sombra más notoria */
     position: sticky;
     top: 0;
     z-index: 100;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+}
+
+.logo-carousel {
+    height: 100px;
+    width: 115px;
+    position: relative;
+    margin: 20px 0;
+}
+
+.logo-carousel img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.logo-carousel img.logo-active {
+    opacity: 1;
 }
 
 .logo {
@@ -77,6 +120,7 @@ header {
     align-items: center;
 }
 
+/* Navigation */
 nav {
     display: flex;
     gap: 20px;
@@ -85,57 +129,84 @@ nav {
 
 nav ul {
     display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 15px;
+    background: var(--amarillo);
     list-style: none;
-    gap: 20px;
+    border-radius: 30px;
+    box-shadow: 0 2px 5px var(--sombra);
+    margin: 0;
+}
+
+nav a {
+    color: var(--negro);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s, transform 0.3s;
+    padding: 10px 20px;
+    border-radius: 25px;
+    display: block;
+    position: relative; /* Necesario para el efecto glow */
+    overflow: hidden; /* Recorta el glow */
+}
+
+nav a:hover {
+    color: var(--amarillo);
+    transform: scale(1.1);
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px var(--amarillo); /* Efecto glow al hacer hover */
 }
 
 nav li {
     position: relative;
 }
 
-nav a {
-    font-weight: 600;
-    padding: 10px;
-    border-radius: 10px;
-    transition: var(--transicion);
+/* Hamburger Menu */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
 }
 
-nav a:hover {
-    background-color: var(--amarillo);
-    color: var(--negro);
-    box-shadow: 0 4px 6px var(--sombra);
+.menu-toggle .bar {
+    width: 30px;
+    height: 3px;
+    background-color: var(--negro);
+    margin: 6px 0;
 }
 
-/* Sección principal */
+/* Sección Principal */
 .section {
     padding: 60px 20px;
     text-align: center;
 }
 
 .section h2 {
+    margin-bottom: 40px;
     font-size: 2.5em;
+    font-weight: 700;
     color: var(--amarillo);
-    margin-bottom: 30px;
+    animation: pulse 2s infinite alternate; /* Animación sutil de pulso */
 }
 
-.section p {
-    font-size: 1.1em;
-    color: var(--gris-claro);
-    margin-bottom: 20px;
-    line-height: 1.8;
-}
-
-.section img {
-    width: 80%;
-    max-width: 400px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px var(--sombra);
-    transition: transform 0.3s;
-}
-
-.section img:hover {
+.section h2:hover {
     transform: scale(1.05);
+    text-shadow: 0 0 10px var(--amarillo); /* Resaltado al hacer hover */
+}
+
+/* Menu */
+.menu-category {
+    margin-bottom: 40px;
+}
+
+.menu-category h3 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 2em;
+    font-weight: 600;
+    color: var(--amarillo);
+    animation: fadeIn 1s ease-out; /* Animación de entrada */
 }
 
 /* Productos */
@@ -143,16 +214,19 @@ nav a:hover {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
-    margin-top: 30px;
+    margin: 30px 0;
 }
 
 .producto-item {
-    background-color: rgba(255, 230, 62, 0.1);
+    background-color: rgba(255, 230, 62, 0.1); /* Fondo amarillo sutil */
     padding: 20px;
-    border-radius: 15px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     box-shadow: 0 4px 8px var(--sombra);
-    text-align: center;
-    transition: var(--transicion);
+    transition: transform 0.3s, background-color 0.3s, color 0.3s;
+    color: var(--gris); /* Texto en gris para contraste */
     position: relative;
     overflow: hidden;
 }
@@ -160,29 +234,11 @@ nav a:hover {
 .producto-item:hover {
     transform: translateY(-5px);
     background-color: rgba(255, 230, 62, 0.3);
-}
-
-.producto-item h3 {
-    margin-bottom: 10px;
-    font-size: 1.6em;
     color: var(--amarillo);
+    box-shadow: 0 0 10px var(--amarillo); /* Resaltado al hacer hover */
 }
 
-.producto-item p {
-    margin-bottom: 10px;
-    color: var(--gris-claro);
-}
-
-.producto-item span {
-    font-weight: bold;
-    color: var(--amarillo);
-}
-
-.producto-item button {
-    margin-top: 10px;
-}
-
-/* Formulario de contacto */
+/* Contacto */
 .formulario {
     margin-top: 40px;
     padding: 20px;
@@ -192,21 +248,33 @@ nav a:hover {
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 }
 
-input, textarea {
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+    font-weight: 500;
+    color: var(--amarillo); /* Etiquetas en amarillo */
+}
+
+.form-group input,
+.form-group textarea {
     width: 100%;
-    padding: 10px;
-    border: 2px solid var(--gris-claro);
-    border-radius: 10px;
-    outline: none;
-    transition: var(--transicion);
-    margin-bottom: 10px;
-    background-color: #f5f5f5;
+    padding: 12px;
+    border: 1px solid var(--gris);
+    border-radius: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    font-size: 1em;
+    background-color: rgba(255, 230, 62, 0.05); /* Fondo amarillo sutil */
+    color: var(--gris); /* Texto en gris para contraste */
 }
 
-input:focus, textarea:focus {
+.form-group input:focus,
+.form-group textarea:focus {
     border-color: var(--amarillo);
     box-shadow: 0 4px 6px var(--sombra);
 }
@@ -215,42 +283,7 @@ input:focus, textarea:focus {
 footer {
     background-color: var(--negro);
     color: var(--amarillo);
-    padding: 20px;
+    padding: 30px 0;
     text-align: center;
-    box-shadow: 0 -4px 6px var(--sombra);
-}
-
-footer p {
-    margin-bottom: 10px;
-}
-
-footer a {
-    color: var(--amarillo);
-    font-weight: bold;
-    transition: var(--transicion);
-}
-
-footer a:hover {
-    color: var(--gris-claro);
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    nav {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .productos-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .section img {
-        width: 90%;
-    }
+    box-shadow: 0 -2px 5px var(--sombra);
 }
