@@ -108,7 +108,7 @@ Este proyecto no utiliza variables de entorno directamente en el código del lad
 
 ## Licencia
 
-Este proyecto está bajo la licencia [MIT License](LICENSE).
+Este proyecto está bajo estricta prohibicion copiarlo o editarlo
 
 ## Contacto
 
