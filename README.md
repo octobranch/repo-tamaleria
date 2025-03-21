@@ -108,7 +108,20 @@ Este proyecto no utiliza variables de entorno directamente en el código del lad
 
 ## Licencia
 
-Este proyecto está bajo estricta prohibicion copiarlo o editarlo
+⚠️ Aviso de Derechos de Autor y Uso No Autorizado
+
+Este proyecto y todo su contenido, incluido el código fuente, diseño y archivos asociados, son propiedad exclusiva de La Tamalería Cancún. Todos los derechos están reservados.
+
+❌ Queda estrictamente prohibido:
+	•	Copiar, distribuir o reproducir parcial o totalmente el código fuente o cualquier parte del proyecto.
+	•	Editar, modificar o adaptar el contenido sin autorización previa y por escrito del propietario.
+	•	Usar este proyecto con fines comerciales o personales sin consentimiento explícito.
+	•	Reclamar propiedad o autoría del código o diseño presente en este repositorio.
+
+✅ Uso autorizado:
+
+El uso legítimo y autorizado de este proyecto solo puede ser otorgado por el propietario mediante permiso escrito.
+
 
 ## Contacto
 
