@@ -56,11 +56,13 @@ header {
 
 /* Header - Logo adjustments */
 .logo-carousel {
-    height: 100px;
-    width: 115px;
+    height: auto;
+    width: auto;
+    max-height: 100px; /* Limitar altura máxima */
+    max-width: 115px; /* Limitar ancho máximo */
     position: relative;
     margin: 20px 0;
-    overflow: hidden; /* Añadido para contener la imagen */
+    overflow: hidden; /* Asegura que la imagen no se desborde */
 }
 
 .logo-carousel img {
@@ -68,45 +70,27 @@ header {
     left: 0;
     top: 0;
     width: 100%;
-    height: auto; /* Añadido para mantener proporción */
-    object-fit: contain; /* Añadido para ajuste responsivo */
-    opacity: 0;
+    height: 100%;
+    object-fit: contain; /* Mantiene las proporciones del logo */
+    opacity: 1; /* Asegura que la imagen siempre sea visible */
     transition: opacity 0.5s ease-in-out;
 }
 
 /* Mobile Styles - Logo adjustments */
 @media (max-width: 768px) {
-    header {
-        padding: 10px 15px; /* Reducir padding para más espacio */
-        flex-wrap: wrap; /* Permitir wrap en caso necesario */
-    }
-    
     .logo-carousel {
-        height: 60px; /* Reducir altura */
-        width: 90px; /* Reducir ancho */
-        margin: 10px 0; /* Reducir margen */
-    }
-
-    .menu-toggle {
-        order: 1; /* Asegurar posición correcta */
-    }
-    
-    nav.active ul {
-        top: 80px; /* Ajustar posición del menú desplegable */
+        max-height: 80px; /* Reducir la altura máxima para pantallas pequeñas */
+        max-width: 150px; /* Ajustar el ancho máximo */
+        margin: 10px 0;
     }
 }
 
 @media (max-width: 480px) {
     .logo-carousel {
-        height: 50px;
-        width: 75px;
-    }
-    
-    header {
-        padding: 10px; /* Menos padding en pantallas muy pequeñas */
+        max-height: 60px; /* Ajustar la altura máxima en pantallas más pequeñas */
+        max-width: 120px; /* Ajustar el ancho máximo */
     }
 }
-
 /* Navigation */
 nav {
     transition: var(--transicion-rapida);
