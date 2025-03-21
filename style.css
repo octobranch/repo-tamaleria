@@ -54,11 +54,13 @@ header {
     align-items: center;
 }
 
+/* Header - Logo adjustments */
 .logo-carousel {
     height: 100px;
     width: 115px;
     position: relative;
     margin: 20px 0;
+    overflow: hidden; /* Añadido para contener la imagen */
 }
 
 .logo-carousel img {
@@ -66,12 +68,43 @@ header {
     left: 0;
     top: 0;
     width: 100%;
+    height: auto; /* Añadido para mantener proporción */
+    object-fit: contain; /* Añadido para ajuste responsivo */
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
 }
 
-.logo-carousel img.logo-active {
-    opacity: 1;
+/* Mobile Styles - Logo adjustments */
+@media (max-width: 768px) {
+    header {
+        padding: 10px 15px; /* Reducir padding para más espacio */
+        flex-wrap: wrap; /* Permitir wrap en caso necesario */
+    }
+    
+    .logo-carousel {
+        height: 60px; /* Reducir altura */
+        width: 90px; /* Reducir ancho */
+        margin: 10px 0; /* Reducir margen */
+    }
+
+    .menu-toggle {
+        order: 1; /* Asegurar posición correcta */
+    }
+    
+    nav.active ul {
+        top: 80px; /* Ajustar posición del menú desplegable */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-carousel {
+        height: 50px;
+        width: 75px;
+    }
+    
+    header {
+        padding: 10px; /* Menos padding en pantallas muy pequeñas */
+    }
 }
 
 /* Navigation */
