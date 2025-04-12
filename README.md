@@ -1,4 +1,4 @@
-# La Tamalería Cancún - Sitio Web
+# Bendita Tamalería - Sitio Web
 
 ![Logo de La Tamalería Cancún](img/logos/logo-ver1.svg)
 
